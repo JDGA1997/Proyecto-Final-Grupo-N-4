@@ -57,14 +57,14 @@ def una_noticia(request, noticia_id):
 class CrearNoticiaView(CreateView):
     model = Noticia
     template_name = "noticias/nueva_noticia.html"
-    fields = ["titulo", "subtitulo", "contenido"]
+    fields = ["titulo", "subtitulo", "contenido", "autor", "categorias"]
     success_url = reverse_lazy("todas_las_noticias")
 
-# VISTA BASADA EN FUNCIONES (FBV)
+# VISTA BASADA EN CLASES (CBV)
 class ActualizarNoticiaView(UpdateView):
     model = Noticia
     template_name = "noticias/actualizar_noticia.html"
-    fields = ["titulo", "subtitulo"]
+    fields = ["titulo", "subtitulo", "contenido"]
     success_url = reverse_lazy("todas_las_noticias")
     pk_url_kwarg = "noticia_id"
 
@@ -85,6 +85,6 @@ def eliminar_noticia(request, noticia_id):
 
     if request.method == "POST":
         noticia.delete()
-        return redirect("todas_las_noticias_fbv")
+        return redirect("todas_las_noticias")
 
     return render(request, "noticias/eliminar_noticia.html", {"noticia": noticia})

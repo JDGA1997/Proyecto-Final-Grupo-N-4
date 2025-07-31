@@ -13,6 +13,9 @@ from .views import (
 #http://127.0.0.1:8000/noticias/
 
 urlpatterns = [
+    # Ruta principal para noticias - usando FBV como predeterminada
+    path('', todas_las_noticias, name="todas_las_noticias"),
+    
     # CBV http://127.0.0.1:8000/noticias/cbv/
     path('cbv/', TodasLasNoticiasView.as_view(), name="todas_las_noticias_cbv"),
     path('cbv/<int:noticia_id>/', UnaNoticiaView.as_view(), name='una_noticia_cbv'),
