@@ -13,44 +13,47 @@
 
 ## 📋 Descripción del Proyecto
 
-Este proyecto es un **portal web de noticias especializado en robótica** desarrollado como proyecto final del curso de Desarrollo Web - Etapa 2. La aplicación permite gestionar noticias y comentarios relacionados con el mundo de la robótica, ofreciendo funcionalidades de visualización, administración de contenido y sistema de usuarios con roles y permisos.
+Este proyecto es un **portal web de noticias especializado en robótica** desarrollado como proyecto final del curso de Desarrollo Web - Etapa 2. La aplicación se centra exclusivamente en la gestión de noticias sobre robótica con un sistema completo de comentarios, implementando manejo de usuarios con roles y permisos específicos para garantizar el correcto funcionamiento del portal.
 
 ### 🎯 Objetivos del Proyecto
 
-- Crear un sistema web completo para la gestión de noticias sobre robótica
-- Implementar un CRUD (Create, Read, Update, Delete) funcional usando Django
-- Desarrollar un sistema de comentarios interactivo para las noticias
-- Implementar manejo de usuarios, permisos y roles
+- Crear un portal de noticias sobre robótica funcional con página principal
+- Implementar un CRUD (Create, Read, Update, Delete) completo para noticias sobre robótica
+- Desarrollar un sistema integral de comentarios para las noticias sobre robótica
+- Implementar gestión de usuarios con roles y permisos diferenciados
 - Aplicar conceptos de programación orientada a objetos y bases de datos relacionales
 - Desarrollar vistas basadas en clases (CBV) **Ó** funciones (FBV) para una arquitectura moderna (SOLO UNA SOLA)
-- Crear un sistema de categorización y filtrado de contenido
+- Crear un sistema de categorización y filtrado de contenido de noticias sobre robótica
 
 ## ✨ Características Principales
 
-### 📰 Gestión de Noticias
-- **Visualización** de todas las noticias del portal
-- **Filtrado** por categorías (Tecnología, Investigación, Innovación, etc.)
-- **Detalle completo** de cada noticia con autor y fecha
-- **CRUD completo**: Crear, editar y eliminar noticias
-- **Sistema de categorías** múltiples por noticia
+### 📰 Gestión de Noticias sobre Robótica
+- **Página principal** con listado completo de todas las noticias sobre robótica
+- **Visualización** organizada y navegable de noticias sobre robótica
+- **Filtrado** por categorías para una mejor organización del contenido robótico
+- **Detalle completo** de cada noticia sobre robótica con autor y fecha de publicación
+- **CRUD completo**: Crear, editar y eliminar noticias sobre robótica según permisos de usuario
+- **Sistema de categorías** para clasificar y organizar el contenido sobre robótica
 
-### 💬 Sistema de Comentarios
-- **Comentarios** en cada noticia para fomentar la interacción
-- **Moderación** de comentarios por parte de los administradores
-- **Respuestas** a comentarios para crear discusiones
-- **Gestión** de comentarios por usuarios registrados
+### 💬 Sistema Completo de Comentarios
+- **Comentarios** asociados a cada noticia sobre robótica para fomentar la interacción
+- **Moderación** de comentarios según roles de usuario
+- **Respuestas** a comentarios para crear hilos de discusión sobre temas de robótica
+- **Gestión** completa de comentarios por usuarios registrados
+- **Control de acceso** según permisos establecidos
 
-### 👥 Sistema de Usuarios y Permisos
-- **Registro e inicio de sesión** de usuarios
+### 👥 Sistema de Usuarios con Roles y Permisos
+- **Registro e inicio de sesión** seguro de usuarios
 - **Roles diferenciados**: Administrador, Editor, Usuario registrado
-- **Permisos específicos** por rol para diferentes acciones
+- **Permisos específicos** por rol para controlar acceso a funcionalidades
 - **Gestión de perfiles** de usuario
-- **Sistema de autenticación** robusto
+- **Control de acceso** robusto para garantizar seguridad
+- **Sistema de autenticación** completo
 
 ### 🏷️ Sistema de Categorías y Autores
-- **Gestión de autores** con información detallada
-- **Categorías organizadas** para clasificar noticias
-- **Relaciones** entre contenido y responsables
+- **Gestión de autores** especializados en robótica con información detallada
+- **Categorías organizadas** para clasificar noticias sobre robótica
+- **Relaciones** estructuradas entre contenido robótico y responsables
 
 ## 🏗️ Arquitectura del Proyecto
 
@@ -58,15 +61,15 @@ Este proyecto es un **portal web de noticias especializado en robótica** desarr
 ```
 Proyecto-Final-Grupo-N-4/
 ├── apps/
-│   ├── noticias/          # App para gestión de noticias
+│   ├── noticias/          # App para gestión de noticias sobre robótica
 │   │   ├── models.py      # Modelos: Noticia, Autor, Categoria, Comentario
-│   │   ├── views.py       # Vistas CBV
+│   │   ├── views.py       # Vistas CBV **Ó** FBV
 │   │   ├── urls.py        # URLs de la app
 │   │   ├── forms.py       # Formularios personalizados
 │   │   └── admin.py       # Configuración del admin
 │   └── usuarios/          # App para gestión de usuarios
 │       ├── models.py      # Modelos: PerfilUsuario
-│       ├── views.py       # Vistas CBV de autenticación
+│       ├── views.py       # Vistas CBV **Ó** FBV de autenticación
 │       ├── forms.py       # Formularios de registro/login
 │       └── urls.py        # URLs de autenticación
 ├── comsiete/              # Configuración principal del proyecto
@@ -77,7 +80,7 @@ Proyecto-Final-Grupo-N-4/
 │   ├── urls.py            # URLs principales
 │   └── views.py           # Vista principal
 ├── templates/             # Templates HTML
-│   ├── noticias/          # Templates de noticias
+│   ├── noticias/          # Templates de noticias sobre robótica y página principal
 │   ├── comentarios/       # Templates de comentarios
 │   └── usuarios/          # Templates de autenticación
 ├── static/                # Archivos estáticos (CSS, JS, imágenes)
@@ -87,10 +90,10 @@ Proyecto-Final-Grupo-N-4/
 
 ### 🗄️ Modelos de Base de Datos
 
-#### Noticias
-- **Noticia**: Título, subtítulo, contenido, fecha, autor, categorías, imagen
-- **Autor**: Nombre, nacionalidad, biografía
-- **Categoria**: Nombre, descripción
+#### Noticias sobre Robótica
+- **Noticia**: Título, subtítulo, contenido sobre robótica, fecha, autor, categorías, imagen
+- **Autor**: Nombre, nacionalidad, biografía, especialización en robótica
+- **Categoria**: Nombre, descripción (ej: IA, Automatización, Robots Industriales)
 - **Comentario**: Contenido, fecha, usuario, noticia, comentario padre (para respuestas)
 
 #### Usuarios y Autenticación
@@ -147,8 +150,8 @@ python manage.py runserver
 ```
 
 7. **Acceder a la aplicación**
-- Portal principal: http://127.0.0.1:8000/
-- Noticias: http://127.0.0.1:8000/noticias/
+- Página principal del portal: http://127.0.0.1:8000/
+- Gestión de noticias: http://127.0.0.1:8000/noticias/
 - Registro/Login: http://127.0.0.1:8000/usuarios/
 - Admin: http://127.0.0.1:8000/admin/
 
@@ -164,42 +167,49 @@ python manage.py runserver
 
 ## 📱 Funcionalidades por Módulo
 
-### 📰 Módulo Noticias
+### 🏠 Página Principal
+- **Listado completo** de todas las noticias sobre robótica disponibles
+- **Navegación intuitiva** y organizada por temas robóticos
+- **Acceso directo** a detalles de cada noticia sobre robótica
+- **Filtros básicos** para mejorar la experiencia de usuario en contenido robótico
 
-#### Vistas Disponibles (CBV)
-- **Lista de noticias** (`/noticias/`)
-- **Detalle de noticia** (`/noticias/<id>/`)
-- **Crear noticia** (`/noticias/crear/`) - Solo usuarios autenticados con permisos
+### 📰 Módulo Noticias sobre Robótica (CBV) **Ó** (FBV)
+
+#### Vistas Disponibles
+- **Lista de noticias** (`/noticias/`) - Página principal del portal de robótica
+- **Detalle de noticia** (`/noticias/<id>/`) - Vista completa de cada noticia sobre robótica
+- **Crear noticia** (`/noticias/crear/`) - Solo usuarios con permisos de editor/admin
 - **Editar noticia** (`/noticias/editar/<id>/`) - Solo autor o administrador
 - **Eliminar noticia** (`/noticias/eliminar/<id>/`) - Solo autor o administrador
 
-#### Características Especiales
-- Filtrado por categorías mediante parámetros GET
-- Búsqueda en títulos y contenido
-- Sistema de paginación para listas extensas
-- Carga de imágenes para ilustrar noticias
+#### Características Específicas
+- Filtrado por categorías robóticas mediante parámetros GET
+- Sistema de paginación para manejo de grandes volúmenes de noticias
+- Búsqueda y organización del contenido robótico
+- Control de acceso según roles de usuario
 
-### 💬 Módulo Comentarios
+### 💬 Sistema de Comentarios
 
-#### Funcionalidades
-- **Agregar comentarios** a noticias (usuarios registrados)
-- **Responder comentarios** para crear hilos de discusión
-- **Moderar comentarios** (administradores)
-- **Eliminar comentarios propios** (usuarios registrados)
+#### Funcionalidades Completas
+- **Agregar comentarios** a cualquier noticia sobre robótica (usuarios registrados)
+- **Responder comentarios** para crear discusiones estructuradas sobre robótica
+- **Moderar comentarios** según roles de administrador
+- **Eliminar comentarios** con permisos apropiados
+- **Gestión completa** del sistema de comentarios en noticias robóticas
 
-### 👥 Módulo Usuarios
+### 👥 Módulo Usuarios y Permisos
 
-#### Vistas de Autenticación
+#### Gestión de Autenticación
 - **Registro de usuario** (`/usuarios/registro/`)
 - **Inicio de sesión** (`/usuarios/login/`)
 - **Cierre de sesión** (`/usuarios/logout/`)
-- **Perfil de usuario** (`/usuarios/perfil/`)
+- **Gestión de perfil** (`/usuarios/perfil/`)
 
-#### Sistema de Permisos
-- **Administrador**: Acceso completo a todas las funciones
-- **Editor**: Puede crear, editar noticias y moderar comentarios  
-- **Usuario registrado**: Puede comentar y gestionar su perfil
-- **Usuario anónimo**: Solo lectura de noticias
+#### Control de Acceso y Roles
+- **Administrador**: Control total del portal y moderación
+- **Editor**: Creación y edición de noticias, moderación de comentarios  
+- **Usuario registrado**: Comentarios y gestión de perfil personal
+- **Usuario anónimo**: Solo lectura de noticias sobre robótica (sin comentarios)
 
 ## 🔧 Configuración de Desarrollo
 
@@ -227,11 +237,6 @@ Este proyecto fue posible gracias al trabajo colaborativo de nuestro equipo:
 
 | Nombre y Apellido | Usuario en GitHub | Perfil de GitHub |
 | ----------------- | ----------------- | ---------------- |
-|  | `` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/) |
-|  | `` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/) |
-|  | `` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/) |
-|  | `` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/) |
-|  | `` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/) |
 | Aldo Andrés Acosta | `Andres777777` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Andres777777) |
 | Juan Diego González Antoniazzi | `JDGA1997` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JDGA1997) |
 
@@ -245,15 +250,15 @@ Este proyecto es desarrollado con fines educativos como parte del programa Infor
 
 ## 🏆 Logros Académicos
 
-- ✅ Implementación completa de CRUD para noticias
-- ✅ Sistema de comentarios interactivo con respuestas
-- ✅ Manejo de usuarios, permisos y roles
+- ✅ Portal de noticias sobre robótica funcional con página principal completa
+- ✅ Sistema integral de comentarios asociado a noticias sobre robótica
+- ✅ Gestión completa de usuarios con roles y permisos diferenciados
+- ✅ Implementación de CRUD completo para noticias sobre robótica
+- ✅ Uso exclusivo de vistas basadas en clases (CBV) **Ó** funciones (FBV)
+- ✅ Control de acceso y seguridad según roles de usuario
 - ✅ Uso de Django ORM y relaciones de base de datos
-- ✅ Desarrollo con vistas basadas en clases (CBV)
-- ✅ Sistema de filtrado y búsqueda avanzado
-- ✅ Gestión de archivos multimedia
-- ✅ Arquitectura modular con apps separadas
-- ✅ Portal especializado en robótica
+- ✅ Sistema de filtrado y organización de contenido robótico
+- ✅ Arquitectura modular enfocada en el portal de noticias sobre robótica
 
 ---
 
@@ -261,7 +266,7 @@ Este proyecto es desarrollado con fines educativos como parte del programa Infor
 
 ### ⭐ Si este proyecto te fue útil, ¡no olvides darle una estrella!
 
-**Desarrollado con 🤖❤️ por el Grupo N°4 - Informatorio 2025**
+**Desarrollado con ❤️ por el Grupo N°4 - Informatorio 2025**
 
 [![Informatorio](https://img.shields.io/badge/Informatorio-2025-blue?style=for-the-badge)](https://www.informatorio.org/)
 
