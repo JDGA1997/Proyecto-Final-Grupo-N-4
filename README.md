@@ -13,35 +13,43 @@
 
 ## 📋 Descripción del Proyecto
 
-Este proyecto es un **portal web de noticias especializado en robótica** desarrollado como proyecto final del curso de Desarrollo Web - Etapa 2. La aplicación permite gestionar noticias, eventos y categorías relacionadas con el mundo de la robótica, ofreciendo tanto funcionalidades de visualización como de administración de contenido.
+Este proyecto es un **portal web de noticias especializado en robótica** desarrollado como proyecto final del curso de Desarrollo Web - Etapa 2. La aplicación permite gestionar noticias y comentarios relacionados con el mundo de la robótica, ofreciendo funcionalidades de visualización, administración de contenido y sistema de usuarios con roles y permisos.
 
 ### 🎯 Objetivos del Proyecto
 
 - Crear un sistema web completo para la gestión de noticias sobre robótica
 - Implementar un CRUD (Create, Read, Update, Delete) funcional usando Django
+- Desarrollar un sistema de comentarios interactivo para las noticias
+- Implementar manejo de usuarios, permisos y roles
 - Aplicar conceptos de programación orientada a objetos y bases de datos relacionales
-- Desarrollar tanto vistas basadas en funciones (FBV) como vistas basadas en clases (CBV)
+- Desarrollar vistas basadas en clases (CBV) **Ó** funciones (FBV) para una arquitectura moderna (SOLO UNA SOLA)
 - Crear un sistema de categorización y filtrado de contenido
 
 ## ✨ Características Principales
 
 ### 📰 Gestión de Noticias
 - **Visualización** de todas las noticias del portal
-- **Filtrado** por categorías (Tecnología, Política, Deportes, etc.)
+- **Filtrado** por categorías (Tecnología, Investigación, Innovación, etc.)
 - **Detalle completo** de cada noticia con autor y fecha
 - **CRUD completo**: Crear, editar y eliminar noticias
 - **Sistema de categorías** múltiples por noticia
 
-### 🎪 Gestión de Eventos
-- **Listado** de eventos relacionados con robótica
-- **Filtrado** por categorías de eventos
-- **Detalles** con organizador, fecha/hora y duración
-- **Carga de imágenes** para eventos
-- **CRUD completo** para gestión de eventos
+### 💬 Sistema de Comentarios
+- **Comentarios** en cada noticia para fomentar la interacción
+- **Moderación** de comentarios por parte de los administradores
+- **Respuestas** a comentarios para crear discusiones
+- **Gestión** de comentarios por usuarios registrados
 
-### 👥 Sistema de Autores y Organizadores
-- **Gestión de autores** con nacionalidad
-- **Organizadores** con tipos (Individual, Empresa, Institución)
+### 👥 Sistema de Usuarios y Permisos
+- **Registro e inicio de sesión** de usuarios
+- **Roles diferenciados**: Administrador, Editor, Usuario registrado
+- **Permisos específicos** por rol para diferentes acciones
+- **Gestión de perfiles** de usuario
+- **Sistema de autenticación** robusto
+
+### 🏷️ Sistema de Categorías y Autores
+- **Gestión de autores** con información detallada
+- **Categorías organizadas** para clasificar noticias
 - **Relaciones** entre contenido y responsables
 
 ## 🏗️ Arquitectura del Proyecto
@@ -51,15 +59,16 @@ Este proyecto es un **portal web de noticias especializado en robótica** desarr
 Proyecto-Final-Grupo-N-4/
 ├── apps/
 │   ├── noticias/          # App para gestión de noticias
-│   │   ├── models.py      # Modelos: Noticia, Autor, Categoria
-│   │   ├── views.py       # Vistas FBV y CBV
+│   │   ├── models.py      # Modelos: Noticia, Autor, Categoria, Comentario
+│   │   ├── views.py       # Vistas CBV
 │   │   ├── urls.py        # URLs de la app
+│   │   ├── forms.py       # Formularios personalizados
 │   │   └── admin.py       # Configuración del admin
-│   └── eventos/           # App para gestión de eventos
-│       ├── models.py      # Modelos: Evento, Organizador, Categoria
-│       ├── views.py       # Vistas FBV y CBV
-│       ├── forms.py       # Formularios personalizados
-│       └── urls.py        # URLs de la app
+│   └── usuarios/          # App para gestión de usuarios
+│       ├── models.py      # Modelos: PerfilUsuario
+│       ├── views.py       # Vistas CBV de autenticación
+│       ├── forms.py       # Formularios de registro/login
+│       └── urls.py        # URLs de autenticación
 ├── comsiete/              # Configuración principal del proyecto
 │   ├── settings/          # Configuraciones separadas
 │   │   ├── base.py        # Configuración base
@@ -69,8 +78,9 @@ Proyecto-Final-Grupo-N-4/
 │   └── views.py           # Vista principal
 ├── templates/             # Templates HTML
 │   ├── noticias/          # Templates de noticias
-│   └── eventos/           # Templates de eventos
-├── static/                # Archivos estáticos
+│   ├── comentarios/       # Templates de comentarios
+│   └── usuarios/          # Templates de autenticación
+├── static/                # Archivos estáticos (CSS, JS, imágenes)
 ├── requirements.txt       # Dependencias del proyecto
 └── manage.py             # Comando de gestión de Django
 ```
@@ -78,18 +88,21 @@ Proyecto-Final-Grupo-N-4/
 ### 🗄️ Modelos de Base de Datos
 
 #### Noticias
-- **Noticia**: Título, subtítulo, contenido, fecha, autor, categorías
-- **Autor**: Nombre, nacionalidad
+- **Noticia**: Título, subtítulo, contenido, fecha, autor, categorías, imagen
+- **Autor**: Nombre, nacionalidad, biografía
 - **Categoria**: Nombre, descripción
+- **Comentario**: Contenido, fecha, usuario, noticia, comentario padre (para respuestas)
 
-#### Eventos
-- **Evento**: Nombre, descripción, fecha/hora, duración, organizador, categorías, imagen
-- **Organizador**: Nombre, tipo (Individual/Empresa/Institución)
-- **Categoria**: Nombre, descripción
+#### Usuarios y Autenticación
+- **Usuario**: Utiliza el modelo User de Django
+- **PerfilUsuario**: Información adicional del usuario (avatar, biografía, etc.)
+- **Rol**: Diferentes niveles de permisos (Administrador, Editor, Usuario)
 
 ### 🔗 Relaciones de Base de Datos
-- **Uno a Muchos**: Autor → Noticias, Organizador → Eventos
-- **Muchos a Muchos**: Noticias ↔ Categorías, Eventos ↔ Categorías
+- **Uno a Muchos**: Autor → Noticias, Usuario → Comentarios, Noticia → Comentarios
+- **Muchos a Muchos**: Noticias ↔ Categorías
+- **Jerárquica**: Comentario → Comentario (para respuestas)
+- **Uno a Uno**: Usuario ↔ PerfilUsuario
 
 ## 🚀 Instalación y Configuración
 
@@ -136,7 +149,7 @@ python manage.py runserver
 7. **Acceder a la aplicación**
 - Portal principal: http://127.0.0.1:8000/
 - Noticias: http://127.0.0.1:8000/noticias/
-- Eventos: http://127.0.0.1:8000/eventos/
+- Registro/Login: http://127.0.0.1:8000/usuarios/
 - Admin: http://127.0.0.1:8000/admin/
 
 ## 🛠️ Tecnologías Utilizadas
@@ -153,30 +166,40 @@ python manage.py runserver
 
 ### 📰 Módulo Noticias
 
-#### Vistas Disponibles
-- **Lista de noticias** (`/noticias/cbv/` y `/noticias/fbv/`)
-- **Detalle de noticia** (`/noticias/cbv/<id>/`)
-- **Crear noticia** (`/noticias/cbv/crear/`)
-- **Editar noticia** (`/noticias/cbv/actualizar/<id>/`)
-- **Eliminar noticia** (`/noticias/cbv/eliminar/<id>/`)
-
-#### Filtros
-- Por categoría mediante parámetros GET
-- Búsqueda en títulos y contenido
-
-### 🎪 Módulo Eventos
-
-#### Vistas Disponibles
-- **Lista de eventos** (`/eventos/`)
-- **Detalle de evento** (`/eventos/<id>/`)
-- **Crear evento** (`/eventos/crear/`)
-- **Editar evento** (`/eventos/editar/<id>/`)
-- **Eliminar evento** (`/eventos/eliminar/<id>/`)
+#### Vistas Disponibles (CBV)
+- **Lista de noticias** (`/noticias/`)
+- **Detalle de noticia** (`/noticias/<id>/`)
+- **Crear noticia** (`/noticias/crear/`) - Solo usuarios autenticados con permisos
+- **Editar noticia** (`/noticias/editar/<id>/`) - Solo autor o administrador
+- **Eliminar noticia** (`/noticias/eliminar/<id>/`) - Solo autor o administrador
 
 #### Características Especiales
-- Carga de imágenes para eventos
-- Cálculo automático de fecha/hora de finalización
-- Formularios personalizados con widgets de fecha/hora
+- Filtrado por categorías mediante parámetros GET
+- Búsqueda en títulos y contenido
+- Sistema de paginación para listas extensas
+- Carga de imágenes para ilustrar noticias
+
+### 💬 Módulo Comentarios
+
+#### Funcionalidades
+- **Agregar comentarios** a noticias (usuarios registrados)
+- **Responder comentarios** para crear hilos de discusión
+- **Moderar comentarios** (administradores)
+- **Eliminar comentarios propios** (usuarios registrados)
+
+### 👥 Módulo Usuarios
+
+#### Vistas de Autenticación
+- **Registro de usuario** (`/usuarios/registro/`)
+- **Inicio de sesión** (`/usuarios/login/`)
+- **Cierre de sesión** (`/usuarios/logout/`)
+- **Perfil de usuario** (`/usuarios/perfil/`)
+
+#### Sistema de Permisos
+- **Administrador**: Acceso completo a todas las funciones
+- **Editor**: Puede crear, editar noticias y moderar comentarios  
+- **Usuario registrado**: Puede comentar y gestionar su perfil
+- **Usuario anónimo**: Solo lectura de noticias
 
 ## 🔧 Configuración de Desarrollo
 
@@ -195,7 +218,7 @@ Por defecto, el proyecto usa `comsiete.settings.local` para desarrollo.
 El proyecto incluye estructura básica para testing en cada app:
 ```bash
 python manage.py test apps.noticias
-python manage.py test apps.eventos
+python manage.py test apps.usuarios
 ```
 
 ## 👩‍💻👨‍💻 Nuestro Equipo
@@ -222,12 +245,15 @@ Este proyecto es desarrollado con fines educativos como parte del programa Infor
 
 ## 🏆 Logros Académicos
 
-- ✅ Implementación completa de CRUD
+- ✅ Implementación completa de CRUD para noticias
+- ✅ Sistema de comentarios interactivo con respuestas
+- ✅ Manejo de usuarios, permisos y roles
 - ✅ Uso de Django ORM y relaciones de base de datos
-- ✅ Desarrollo con vistas basadas en funciones y clases
-- ✅ Sistema de filtrado y búsqueda
+- ✅ Desarrollo con vistas basadas en clases (CBV)
+- ✅ Sistema de filtrado y búsqueda avanzado
 - ✅ Gestión de archivos multimedia
 - ✅ Arquitectura modular con apps separadas
+- ✅ Portal especializado en robótica
 
 ---
 
