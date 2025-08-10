@@ -164,6 +164,16 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'acerca_de' %}">
+                            <i class="fas fa-info-circle me-1"></i>Acerca de
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contacto' %}">
+                            <i class="fas fa-envelope me-1"></i>Contacto
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'crear_noticia' %}">
                             <i class="fas fa-plus me-1"></i>Nueva Noticia
                         </a>
@@ -200,18 +210,29 @@
     <footer class="footer py-4 mt-auto">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <h5><i class="fas fa-robot me-2"></i>Portal de Noticias - Robótica G4</h5>
-                    <p class="mb-0">Tu fuente confiable de noticias sobre robótica, automatización industrial y tecnología robótica del futuro.</p>
+                    <p class="mb-3">Tu fuente confiable de noticias sobre robótica, automatización industrial y tecnología robótica del futuro.</p>
                 </div>
-                <div class="col-md-6 text-md-end">
-                    <div class="social-links">
+                <div class="col-md-4">
+                    <h6>Enlaces Rápidos</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'inicio' %}" class="text-white-50 text-decoration-none"><i class="fas fa-home me-1"></i>Inicio</a></li>
+                        <li><a href="{% url 'todas_las_noticias' %}" class="text-white-50 text-decoration-none"><i class="fas fa-newspaper me-1"></i>Noticias</a></li>
+                        <li><a href="{% url 'acerca_de' %}" class="text-white-50 text-decoration-none"><i class="fas fa-info-circle me-1"></i>Acerca de</a></li>
+                        <li><a href="{% url 'contacto' %}" class="text-white-50 text-decoration-none"><i class="fas fa-envelope me-1"></i>Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <h6>Síguenos</h6>
+                    <div class="social-links mb-3">
                         <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="text-white me-3"><i class="fab fa-facebook"></i></a>
                         <a href="#" class="text-white me-3"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-github"></i></a>
+                        <a href="https://github.com/JDGA1997/Proyecto-Final-Grupo-N-4" target="_blank" class="text-white"><i class="fab fa-github"></i></a>
                     </div>
-                    <p class="mb-0 mt-2">© 2025 Grupo N°4 - Informatorio</p>
+                    <p class="mb-0">© 2025 Grupo N°4 - Informatorio</p>
+                    <small class="text-white-50">Proyecto Final Django</small>
                 </div>
             </div>
         </div>

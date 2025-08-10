@@ -20,11 +20,12 @@
 ## 📋 Tabla de Contenidos
 
 - [🚀 Descripción General](#-descripción-general)
-- [✨ Mejoras Implementadas](#-mejoras-implementadas)
+- [✨ Nuevas Funcionalidades Implementadas](#-nuevas-funcionalidades-implementadas)
 - [🛠️ Stack Tecnológico](#️-stack-tecnológico)
 - [📁 Estructura del Proyecto](#-estructura-del-proyecto)
 - [⚙️ Instalación y Configuración](#️-instalación-y-configuración)
-- [🎯 Funcionalidades](#-funcionalidades)
+- [🎯 Funcionalidades Principales](#-funcionalidades-principales)
+- [🌐 Navegación y Páginas](#-navegación-y-páginas)
 - [📱 Diseño Responsive](#-diseño-responsive)
 - [🔧 Configuración Adicional](#-configuración-adicional)
 - [👥 Créditos](#-créditos)
@@ -43,14 +44,62 @@ El **Portal de Noticias sobre Robótica** es una aplicación web moderna desarro
 | **📱 Responsive** | Adaptable a móviles, tablets y desktop | ✅ |
 | **🔐 Autenticación** | Sistema de usuarios integrado | ✅ |
 | **📸 Multimedia** | Soporte completo para imágenes | ✅ |
-| **🔍 Búsqueda** | Filtrado avanzado y paginación | ✅ |
+| **🔍 Búsqueda Avanzada** | Filtrado inteligente y ordenamiento | ✅ |
 | **💬 Comentarios** | Sistema completo de comentarios | ✅ |
+| **📄 Páginas Completas** | Acerca de, Contacto, Detalles | ✅ |
+| **🏷️ Ordenamiento** | Por fecha y alfabético (ASC/DESC) | ✅ |
 | **⚡ Performance** | Optimizado para velocidad | ✅ |
 | **🛡️ Seguridad** | CSRF protection y validaciones | ✅ |
 
 ---
 
-## ✨ Mejoras Implementadas
+## ✨ Nuevas Funcionalidades Implementadas
+
+### 🔍 **Sistema de Ordenamiento Avanzado**
+- ✅ **Ordenamiento por fecha**: Ascendente (más antiguos primero) y Descendente (más recientes primero)
+- ✅ **Ordenamiento alfabético**: Ascendente (A-Z) y Descendente (Z-A)
+- ✅ **Interfaz intuitiva**: Dropdown con opciones claras para el usuario
+- ✅ **Persistencia de filtros**: Los filtros se mantienen al navegar entre páginas
+- ✅ **Combinación de filtros**: Ordenamiento + búsqueda + categoría simultáneamente
+
+### 📄 **Página de Detalle de Noticia** (`una_noticia.html`)
+- ✅ **Vista completa del artículo** con imagen destacada y contenido completo
+- ✅ **Información del autor** con foto de perfil y biografía
+- ✅ **Metadatos de la noticia** (fecha, categorías, número de visitas)
+- ✅ **Sistema de comentarios** integrado con formulario de envío
+- ✅ **Botones de compartir** en redes sociales (Facebook, Twitter, LinkedIn)
+- ✅ **Sidebar con noticias relacionadas** para aumentar engagement
+- ✅ **Navegación mejorada** con enlaces de regreso y acciones rápidas
+
+### 🏢 **Página "Acerca de"**
+- ✅ **Información completa del blog** con misión y visión del proyecto
+- ✅ **Perfiles del equipo** con fotografías y roles de cada miembro
+- ✅ **Descripción del proyecto académico** con contexto del Informatorio
+- ✅ **Stack tecnológico visual** con badges y descripciones
+- ✅ **Hero section moderna** con gradiente y tipografía profesional
+- ✅ **Cards responsivas** para cada miembro del equipo
+
+### 📧 **Página "Contacto"**
+- ✅ **Formulario de contacto completo** con validación frontend y backend
+- ✅ **Múltiples opciones de asunto** (General, Soporte Técnico, Colaboración, etc.)
+- ✅ **Información de contacto** con direcciones y datos del equipo
+- ✅ **Sección de FAQ** con preguntas frecuentes en formato accordion
+- ✅ **Sistema de mensajes** para confirmación de envío exitoso
+- ✅ **Diseño profesional** manteniendo la identidad visual del proyecto
+
+### 🧭 **Navegación Mejorada**
+- ✅ **Navbar actualizada** con enlaces a todas las nuevas páginas
+- ✅ **Footer enriquecido** con enlaces rápidos y información del proyecto
+- ✅ **Iconografía consistente** usando Font Awesome en toda la interfaz
+- ✅ **Enlaces GitHub** para acceso directo al repositorio del proyecto
+- ✅ **Breadcrumbs implícitos** en la estructura de navegación
+
+### 🎨 **Mejoras de UI/UX**
+- ✅ **Diseño coherente** en todas las páginas siguiendo el mismo patrón visual
+- ✅ **Responsive design** optimizado para móviles, tablets y desktop
+- ✅ **Paleta de colores robótica** con azules, grises y acentos tecnológicos
+- ✅ **Efectos hover** y transiciones suaves en botones y cards
+- ✅ **Typography mejorada** con jerarquía clara y legibilidad optimizada
 
 ### 🎨 **Interfaz Moderna con Bootstrap 5**
 - ✅ **Template base responsivo** con navegación profesional
@@ -79,10 +128,12 @@ El **Portal de Noticias sobre Robótica** es una aplicación web moderna desarro
 ### 🔍 **Búsqueda y Filtrado Avanzado**
 - ✅ **Búsqueda por texto** en título, subtítulo y contenido
 - ✅ **Filtrado por categorías** con dropdown interactivo
-- ✅ **Paginación avanzada** (6 noticias por página)
-- ✅ **Indicadores visuales** de filtros activos
+- ✅ **Ordenamiento múltiple**: Por fecha (ASC/DESC) y alfabético (A-Z/Z-A)
+- ✅ **Paginación avanzada** (6 noticias por página) con conservación de filtros
+- ✅ **Indicadores visuales** de filtros activos con resumen inteligente
 - ✅ **Función para limpiar** filtros rápidamente
-- ✅ **URLs amigables** para SEO
+- ✅ **URLs amigables** para SEO y compartir resultados
+- ✅ **Interfaz intuitiva** con formularios bien organizados
 
 ### 📊 **Métricas y Analytics**
 - ✅ **Contador de visualizaciones** por noticia
@@ -139,8 +190,11 @@ Proyecto-Final-Grupo-N-4/
 ├── 📁 templates/                 # Templates limpios y optimizados
 │   ├── 📄 base.html              # Template base responsivo
 │   ├── 📄 index.html             # Página de inicio moderna
+│   ├── 📄 acerca_de.html         # ✨ NUEVA: Página sobre el equipo
+│   ├── 📄 contacto.html          # ✨ NUEVA: Página de contacto
 │   └── 📁 noticias/              # Templates de noticias
-│       ├── 📄 todas_noticias.html
+│       ├── 📄 todas_noticias.html   # ✨ MEJORADA: Con filtros avanzados
+│       ├── 📄 una_noticia.html      # ✨ NUEVA: Detalle completo
 │       ├── 📄 nueva_noticia.html
 │       ├── 📄 actualizar_noticia.html
 │       └── 📄 eliminar_noticia.html
@@ -203,11 +257,14 @@ python manage.py runserver
 
 ### **8. Acceder a la Aplicación**
 - **Portal Principal**: http://127.0.0.1:8000/
+- **Lista de Noticias**: http://127.0.0.1:8000/noticias/
+- **🆕 Acerca de**: http://127.0.0.1:8000/noticias/acerca-de/
+- **🆕 Contacto**: http://127.0.0.1:8000/noticias/contacto/
 - **Panel de Administración**: http://127.0.0.1:8000/admin/
 
 ---
 
-## 🎯 Funcionalidades
+## 🎯 Funcionalidades Principales
 
 ### **🏠 Página de Inicio**
 - **Hero Section** moderno con gradiente tecnológico
@@ -220,11 +277,13 @@ python manage.py runserver
 - **Editor de contenido** con validación de campos
 - **Categorización** por temas específicos de robótica
 - **Sistema de imágenes** integrado con galería
+- **🆕 Vista de detalle completa** con comentarios y compartir
 
-### **🔍 Búsqueda y Filtrado**
+### **🔍 Búsqueda y Filtrado Inteligente**
 - **Búsqueda por texto** en título, subtítulo y contenido
 - **Filtrado por categoría** con menú desplegable
-- **Paginación inteligente** de resultados
+- **🆕 Ordenamiento avanzado**: Por fecha (ASC/DESC) y alfabético (A-Z/Z-A)
+- **Paginación inteligente** de resultados con preservación de filtros
 - **URLs amigables** optimizadas para SEO
 
 ### **💬 Sistema de Comentarios**
@@ -233,11 +292,41 @@ python manage.py runserver
 - **Validación robusta** de datos de entrada
 - **Timestamps automáticos** para seguimiento
 
-### **🎨 Panel de Administración**
+### **� Páginas Institucionales**
+- **Página "Acerca de"**: Información completa del equipo y proyecto
+- **Página "Contacto"**: Formulario profesional con validación
+- **FAQ integrado** con preguntas frecuentes
+- **Información del equipo** con perfiles individuales
+
+### **�🎨 Panel de Administración**
 - **Interfaz personalizada** del admin de Django
 - **Gestión inline** de imágenes y comentarios
 - **Filtros avanzados** en los listados
-- **Branding específico** del Grupo N°4
+
+---
+
+## 🌐 Navegación y Páginas
+
+### **Rutas Principales Disponibles**
+
+| Ruta | Descripción | Funcionalidad |
+|:-----|:------------|:--------------|
+| `/` | Página de inicio | Hero section y navegación rápida |
+| `/noticias/` | Lista de noticias | Búsqueda, filtros y ordenamiento |
+| `/noticias/<id>/` | 🆕 Detalle de noticia | Vista completa con comentarios |
+| `/noticias/crear/` | Crear noticia | Formulario de creación (autenticado) |
+| `/noticias/actualizar/<id>/` | Editar noticia | Formulario de edición (autenticado) |
+| `/noticias/eliminar/<id>/` | Eliminar noticia | Confirmación de eliminación |
+| `/noticias/acerca-de/` | 🆕 Acerca de | Información del equipo y proyecto |
+| `/noticias/contacto/` | 🆕 Contacto | Formulario de contacto y FAQ |
+| `/admin/` | Panel administrativo | Gestión completa del contenido |
+
+### **🆕 Características de Navegación**
+- **Navbar responsiva** con colapso en móviles
+- **Enlaces activos** con indicadores visuales
+- **Breadcrumbs implícitos** en la estructura
+- **Footer enriquecido** con enlaces rápidos
+- **Iconografía consistente** en toda la interfaz
 
 ---
 
@@ -257,10 +346,47 @@ python manage.py runserver
 - **Imágenes optimizadas** para diferentes densidades
 - **Texto legible** en pantallas pequeñas
 - **Carga rápida** con assets optimizados
+- **🆕 Formularios responsivos** en páginas de contacto
+- **🆕 Cards adaptativas** en listados de noticias
+- **🆕 Sidebar colapsable** en vista de detalle
 
 ---
 
 ## 🔧 Configuración Adicional
+
+### **🆕 Nuevas Configuraciones de URLs**
+```python
+# apps/noticias/urls.py - Rutas actualizadas
+urlpatterns = [
+    path('', todas_las_noticias, name="todas_las_noticias"),
+    path('<int:noticia_id>/', una_noticia, name='una_noticia'),  # ✨ NUEVA
+    path('crear/', crear_noticia, name='crear_noticia'),
+    path('actualizar/<int:noticia_id>/', actualizar_noticia, name='actualizar_noticia'),
+    path('eliminar/<int:noticia_id>/', eliminar_noticia, name='eliminar_noticia'),
+    path('acerca-de/', acerca_de, name='acerca_de'),             # ✨ NUEVA
+    path('contacto/', contacto, name='contacto'),                # ✨ NUEVA
+]
+```
+
+### **🆕 Vistas Mejoradas con Ordenamiento**
+```python
+# views.py - Lógica de ordenamiento implementada
+def todas_las_noticias(request):
+    # Parámetros de filtrado
+    categoria_param = request.GET.get("categoria", "").strip()
+    busqueda = request.GET.get("busqueda", "").strip()
+    ordenamiento = request.GET.get("orden", "").strip()  # ✨ NUEVO
+    
+    # Lógica de ordenamiento avanzado
+    if ordenamiento == "fecha_asc":
+        noticias = noticias.order_by('fecha')
+    elif ordenamiento == "fecha_desc":
+        noticias = noticias.order_by('-fecha')
+    elif ordenamiento == "alfabetico_asc":
+        noticias = noticias.order_by('titulo')
+    elif ordenamiento == "alfabetico_desc":
+        noticias = noticias.order_by('-titulo')
+```
 
 ### **Archivos Media**
 ```python
@@ -311,6 +437,8 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 [![Built with Python](https://img.shields.io/badge/Built%20with-Python-3776AB?style=flat-square&logo=python)](https://www.python.org/)
 
 ---
+
+
 
 **© 2025 - Informatorio Chaco | Proyecto Final de Desarrollo Web con Django**
 

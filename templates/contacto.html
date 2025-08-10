@@ -1,0 +1,284 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contacto - Portal Robótica{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="hero-section rounded">
+            <div class="container text-center py-5">
+                <h1 class="display-4 hero-title mb-4">
+                    <i class="fas fa-envelope me-3"></i>
+                    Contáctanos
+                </h1>
+                <p class="hero-subtitle mb-4">¿Tienes alguna pregunta o sugerencia? ¡Nos encantaría escucharte!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Formulario de Contacto -->
+    <div class="col-lg-8 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">
+                    <i class="fas fa-paper-plane me-2"></i>Envíanos un mensaje
+                </h4>
+            </div>
+            <div class="card-body">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="nombre" class="form-label">
+                                <i class="fas fa-user me-1"></i>Nombre *
+                            </label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required placeholder="Tu nombre completo">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label">
+                                <i class="fas fa-envelope me-1"></i>Email *
+                            </label>
+                            <input type="email" class="form-control" id="email" name="email" required placeholder="tu@email.com">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="asunto" class="form-label">
+                            <i class="fas fa-tag me-1"></i>Asunto *
+                        </label>
+                        <select class="form-select" id="asunto" name="asunto" required>
+                            <option value="">Selecciona un asunto</option>
+                            <option value="Consulta General">Consulta General</option>
+                            <option value="Propuesta de Noticia">Propuesta de Noticia</option>
+                            <option value="Error en el Sitio">Reportar Error</option>
+                            <option value="Sugerencia">Sugerencia de Mejora</option>
+                            <option value="Colaboración">Propuesta de Colaboración</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="mensaje" class="form-label">
+                            <i class="fas fa-comment me-1"></i>Mensaje *
+                        </label>
+                        <textarea class="form-control" id="mensaje" name="mensaje" rows="6" required placeholder="Escribe tu mensaje aquí. Incluye todos los detalles que consideres importantes..."></textarea>
+                        <div class="form-text">Mínimo 10 caracteres. Sé específico para poder ayudarte mejor.</div>
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-paper-plane me-2"></i>Enviar Mensaje
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Información adicional -->
+        <div class="card mt-4">
+            <div class="card-body">
+                <h6 class="card-title">
+                    <i class="fas fa-info-circle me-2"></i>Información importante
+                </h6>
+                <ul class="mb-0">
+                    <li>Respondemos todos los mensajes en un plazo de 24-48 horas.</li>
+                    <li>Para propuestas de noticias, incluye enlaces y fuentes relevantes.</li>
+                    <li>Si reportas un error, describe los pasos para reproducirlo.</li>
+                    <li>Este portal está en desarrollo continuo, tus sugerencias son valiosas.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Información de Contacto -->
+    <div class="col-lg-4">
+        <!-- Datos de Contacto -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-address-card me-2"></i>Información de Contacto
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                        <strong>Ubicación</strong>
+                    </div>
+                    <p class="mb-0 ms-4">Resistencia, Chaco, Argentina</p>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-envelope text-primary me-2"></i>
+                        <strong>Email del Proyecto</strong>
+                    </div>
+                    <p class="mb-0 ms-4">portal.robotica.g4@gmail.com</p>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-graduation-cap text-primary me-2"></i>
+                        <strong>Institución</strong>
+                    </div>
+                    <p class="mb-0 ms-4">Informatorio 2025 - Gobierno de Chaco</p>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fab fa-github text-primary me-2"></i>
+                        <strong>Repositorio</strong>
+                    </div>
+                    <a href="https://github.com/JDGA1997/Proyecto-Final-Grupo-N-4" target="_blank" class="ms-4 text-decoration-none">
+                        Ver en GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Redes Sociales y Enlaces -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-share-alt me-2"></i>Síguenos
+                </h5>
+            </div>
+            <div class="card-body text-center">
+                <p class="text-muted mb-3">Mantente al día con las últimas actualizaciones</p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="#" class="btn btn-outline-primary btn-sm">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-info btn-sm">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-primary btn-sm">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/JDGA1997/Proyecto-Final-Grupo-N-4" target="_blank" class="btn btn-outline-dark btn-sm">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQ Rápidas -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-question-circle me-2"></i>Preguntas Frecuentes
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="accordion accordion-flush" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                ¿Puedo enviar noticias?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                ¡Por supuesto! Envíanos tu propuesta de noticia con fuentes y enlaces verificables. Revisaremos y publicaremos las que sean relevantes para la comunidad robótica.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                ¿Es un proyecto académico?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Sí, este portal es nuestro proyecto final del curso de Django en el Informatorio 2025. Sin embargo, nos comprometemos a mantenerlo actualizado.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                ¿Puedo colaborar?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                ¡Nos encantaría! Contáctanos si eres experto en robótica y quieres contribuir con contenido, o si eres desarrollador y quieres mejorar la plataforma.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Llamada a la acción -->
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card bg-light">
+            <div class="card-body text-center py-4">
+                <h4 class="card-title">
+                    <i class="fas fa-robot me-2"></i>¿Te interesa la robótica?
+                </h4>
+                <p class="card-text">Explora nuestras noticias más recientes y mantente al día con los últimos avances en robótica, automatización e inteligencia artificial.</p>
+                <div class="mt-3">
+                    <a href="{% url 'todas_las_noticias' %}" class="btn btn-primary me-3">
+                        <i class="fas fa-newspaper me-1"></i>Ver Noticias
+                    </a>
+                    <a href="{% url 'acerca_de' %}" class="btn btn-outline-secondary">
+                        <i class="fas fa-info-circle me-1"></i>Conocer más
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Validación del formulario
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const mensaje = document.getElementById('mensaje');
+    
+    form.addEventListener('submit', function(e) {
+        if (mensaje.value.trim().length < 10) {
+            e.preventDefault();
+            alert('El mensaje debe tener al menos 10 caracteres.');
+            mensaje.focus();
+        }
+    });
+    
+    // Contador de caracteres
+    mensaje.addEventListener('input', function() {
+        const length = this.value.length;
+        const helpText = this.nextElementSibling;
+        
+        if (length < 10) {
+            helpText.textContent = `Faltan ${10 - length} caracteres mínimo.`;
+            helpText.style.color = '#dc3545';
+        } else {
+            helpText.textContent = `${length} caracteres. ¡Perfecto!`;
+            helpText.style.color = '#198754';
+        }
+    });
+});
+</script>
+{% endblock %}

@@ -15,39 +15,72 @@
 
 <!-- Barra de herramientas -->
 <div class="row mb-4">
-    <div class="col-md-8">
-        <!-- Formulario de búsqueda -->
-        <form method="get" class="d-flex">
-            <input 
-                type="text" 
-                name="busqueda" 
-                class="form-control me-2" 
-                placeholder="Buscar noticias..." 
-                value="{{ busqueda }}"
-            >
-            <select name="categoria" class="form-select me-2" style="max-width: 200px;">
-                <option value="">Todas las categorías</option>
-                {% for categoria in categorias %}
-                    <option value="{{ categoria.nombre }}" 
-                        {% if categoria.nombre == categoria_seleccionada %}selected{% endif %}>
-                        {{ categoria.nombre }}
-                    </option>
-                {% endfor %}
-            </select>
-            <button type="submit" class="btn btn-outline-primary">
-                <i class="fas fa-search"></i>
-            </button>
+    <div class="col-12">
+        <!-- Formulario de búsqueda y filtros -->
+        <form method="get" class="row g-3">
+            <!-- Búsqueda por texto -->
+            <div class="col-md-4">
+                <label for="busqueda" class="form-label">
+                    <i class="fas fa-search me-1"></i>Buscar
+                </label>
+                <input 
+                    type="text" 
+                    name="busqueda" 
+                    id="busqueda"
+                    class="form-control" 
+                    placeholder="Buscar noticias..." 
+                    value="{{ busqueda }}"
+                >
+            </div>
+            
+            <!-- Filtro por categoría -->
+            <div class="col-md-3">
+                <label for="categoria" class="form-label">
+                    <i class="fas fa-tags me-1"></i>Categoría
+                </label>
+                <select name="categoria" id="categoria" class="form-select">
+                    <option value="">Todas las categorías</option>
+                    {% for categoria in categorias %}
+                        <option value="{{ categoria.nombre }}" 
+                            {% if categoria.nombre == categoria_seleccionada %}selected{% endif %}>
+                            {{ categoria.nombre }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <!-- Ordenamiento -->
+            <div class="col-md-3">
+                <label for="orden" class="form-label">
+                    <i class="fas fa-sort me-1"></i>Ordenar por
+                </label>
+                <select name="orden" id="orden" class="form-select">
+                    <option value="" {% if not ordenamiento %}selected{% endif %}>Más recientes</option>
+                    <option value="fecha_desc" {% if ordenamiento == 'fecha_desc' %}selected{% endif %}>Fecha: Más recientes</option>
+                    <option value="fecha_asc" {% if ordenamiento == 'fecha_asc' %}selected{% endif %}>Fecha: Más antiguos</option>
+                    <option value="titulo_asc" {% if ordenamiento == 'titulo_asc' %}selected{% endif %}>Título: A-Z</option>
+                    <option value="titulo_desc" {% if ordenamiento == 'titulo_desc' %}selected{% endif %}>Título: Z-A</option>
+                </select>
+            </div>
+            
+            <!-- Botones de acción -->
+            <div class="col-md-2">
+                <label class="form-label">&nbsp;</label>
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-filter"></i>
+                    </button>
+                    <a href="{% url 'todas_las_noticias' %}" class="btn btn-outline-secondary" title="Limpiar filtros">
+                        <i class="fas fa-times"></i>
+                    </a>
+                </div>
+            </div>
         </form>
-    </div>
-    <div class="col-md-4 text-end">
-        <a href="{% url 'crear_noticia' %}" class="btn btn-success">
-            <i class="fas fa-plus me-1"></i>Crear Nueva Noticia
-        </a>
     </div>
 </div>
 
-<!-- Filtros activos -->
-{% if categoria_seleccionada or busqueda %}
+<!-- Resumen de filtros activos -->
+{% if categoria_seleccionada or busqueda or ordenamiento %}
 <div class="row mb-3">
     <div class="col-12">
         <div class="alert alert-info d-flex justify-content-between align-items-center">
@@ -59,6 +92,16 @@
                 {% if busqueda %}
                     <span class="badge bg-secondary me-1">Búsqueda: "{{ busqueda }}"</span>
                 {% endif %}
+                {% if ordenamiento %}
+                    <span class="badge bg-info me-1">
+                        Orden: 
+                        {% if ordenamiento == 'fecha_desc' %}Más recientes
+                        {% elif ordenamiento == 'fecha_asc' %}Más antiguos
+                        {% elif ordenamiento == 'titulo_asc' %}A-Z
+                        {% elif ordenamiento == 'titulo_desc' %}Z-A
+                        {% endif %}
+                    </span>
+                {% endif %}
             </div>
             <a href="{% url 'todas_las_noticias' %}" class="btn btn-sm btn-outline-secondary">
                 <i class="fas fa-times me-1"></i>Limpiar filtros
@@ -67,6 +110,22 @@
     </div>
 </div>
 {% endif %}
+
+<!-- Barra de acciones -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <h5 class="text-muted mb-0">
+            {% if noticias %}
+                Mostrando {{ noticias.start_index }}-{{ noticias.end_index }} de {{ noticias.paginator.count }} noticias
+            {% endif %}
+        </h5>
+    </div>
+    <div class="col-md-6 text-end">
+        <a href="{% url 'crear_noticia' %}" class="btn btn-success">
+            <i class="fas fa-plus me-1"></i>Crear Nueva Noticia
+        </a>
+    </div>
+</div>
 
 <!-- Lista de noticias -->
 {% if noticias %}
@@ -131,12 +190,12 @@
                 <ul class="pagination justify-content-center">
                     {% if noticias.has_previous %}
                         <li class="page-item">
-                            <a class="page-link" href="?page=1{% if categoria_seleccionada %}&categoria={{ categoria_seleccionada }}{% endif %}{% if busqueda %}&busqueda={{ busqueda }}{% endif %}">
+                            <a class="page-link" href="?page=1{% if categoria_seleccionada %}&categoria={{ categoria_seleccionada }}{% endif %}{% if busqueda %}&busqueda={{ busqueda }}{% endif %}{% if ordenamiento %}&orden={{ ordenamiento }}{% endif %}">
                                 <i class="fas fa-angle-double-left"></i>
                             </a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="?page={{ noticias.previous_page_number }}{% if categoria_seleccionada %}&categoria={{ categoria_seleccionada }}{% endif %}{% if busqueda %}&busqueda={{ busqueda }}{% endif %}">
+                            <a class="page-link" href="?page={{ noticias.previous_page_number }}{% if categoria_seleccionada %}&categoria={{ categoria_seleccionada }}{% endif %}{% if busqueda %}&busqueda={{ busqueda }}{% endif %}{% if ordenamiento %}&orden={{ ordenamiento }}{% endif %}">
                                 <i class="fas fa-angle-left"></i>
                             </a>
                         </li>
@@ -150,12 +209,12 @@
 
                     {% if noticias.has_next %}
                         <li class="page-item">
-                            <a class="page-link" href="?page={{ noticias.next_page_number }}{% if categoria_seleccionada %}&categoria={{ categoria_seleccionada }}{% endif %}{% if busqueda %}&busqueda={{ busqueda }}{% endif %}">
+                            <a class="page-link" href="?page={{ noticias.next_page_number }}{% if categoria_seleccionada %}&categoria={{ categoria_seleccionada }}{% endif %}{% if busqueda %}&busqueda={{ busqueda }}{% endif %}{% if ordenamiento %}&orden={{ ordenamiento }}{% endif %}">
                                 <i class="fas fa-angle-right"></i>
                             </a>
                         </li>
                         <li class="page-item">
-                            <a class="page-link" href="?page={{ noticias.paginator.num_pages }}{% if categoria_seleccionada %}&categoria={{ categoria_seleccionada }}{% endif %}{% if busqueda %}&busqueda={{ busqueda }}{% endif %}">
+                            <a class="page-link" href="?page={{ noticias.paginator.num_pages }}{% if categoria_seleccionada %}&categoria={{ categoria_seleccionada }}{% endif %}{% if busqueda %}&busqueda={{ busqueda }}{% endif %}{% if ordenamiento %}&orden={{ ordenamiento }}{% endif %}">
                                 <i class="fas fa-angle-double-right"></i>
                             </a>
                         </li>

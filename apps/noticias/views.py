@@ -10,6 +10,7 @@ from .models import Noticia, Autor, Categoria, Comentario
 def todas_las_noticias(request):
     categoria_param = request.GET.get("categoria", "").strip()
     busqueda = request.GET.get("busqueda", "").strip()
+    ordenamiento = request.GET.get("orden", "").strip()
 
     # Buscar todas las noticias activas desde la base de datos.
     noticias = Noticia.objects.filter(activa=True).select_related('autor').prefetch_related('categorias')
@@ -26,6 +27,18 @@ def todas_las_noticias(request):
             Q(contenido__icontains=busqueda)
         )
 
+    # Aplicar ordenamiento
+    if ordenamiento == 'fecha_asc':
+        noticias = noticias.order_by('fecha')
+    elif ordenamiento == 'fecha_desc':
+        noticias = noticias.order_by('-fecha')
+    elif ordenamiento == 'titulo_asc':
+        noticias = noticias.order_by('titulo')
+    elif ordenamiento == 'titulo_desc':
+        noticias = noticias.order_by('-titulo')
+    else:
+        noticias = noticias.order_by('-fecha')  # Por defecto más recientes primero
+
     # Paginación
     paginator = Paginator(noticias, 6)  # 6 noticias por página
     page_number = request.GET.get('page')
@@ -39,7 +52,8 @@ def todas_las_noticias(request):
         "noticias": page_obj,
         "categorias": categorias,
         "categoria_seleccionada": categoria_param,
-        "busqueda": busqueda
+        "busqueda": busqueda,
+        "ordenamiento": ordenamiento
     }
 
     # Renderizar el html con el contexto.
@@ -177,4 +191,72 @@ def eliminar_noticia(request, noticia_id):
         return redirect("todas_las_noticias")
 
     context = {"noticia": noticia}
+    return render(request, "noticias/eliminar_noticia.html", context)
+
+
+# VISTA BASADA EN FUNCIONES (FBV) - PÁGINA ACERCA DE
+def acerca_de(request):
+    context = {
+        'equipo': [
+            {
+                'nombre': 'Aldo Andrés Acosta', 
+                'rol': 'Desarrollador Frontend',
+                'descripcion': 'Experto en diseño UI/UX y Bootstrap',
+                'github': 'Andres777777'
+            },
+            {
+                'nombre': 'Integrante2',
+                'rol': '',
+                'descripcion': '',
+                'github': ''
+            },
+                        {
+                'nombre': 'Integrante3',
+                'rol': '',
+                'descripcion': '',
+                'github': ''
+            },
+            {
+                'nombre': 'Integrante4',
+                'rol': '',
+                'descripcion': '',
+                'github': ''
+            },
+            {
+                'nombre': 'Integrante5',
+                'rol': '',
+                'descripcion': '',
+                'github': ''
+            },
+            {
+                'nombre': 'Integrante6',
+                'rol': '',
+                'descripcion': '',
+                'github': ''
+            },
+            {
+                'nombre': 'Juan Diego González Antoniazzi',
+                'rol': 'Desarrollador Full Stack',
+                'descripcion': 'Scrum Master y Tester QA',
+                'github': 'JDGA1997'
+            }
+        ]
+    }
+    return render(request, 'acerca_de.html', context)
+
+
+# VISTA BASADA EN FUNCIONES (FBV) - PÁGINA CONTACTO
+def contacto(request):
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre')
+        email = request.POST.get('email')
+        asunto = request.POST.get('asunto')
+        mensaje = request.POST.get('mensaje')
+        
+        # Aquí podrías agregar lógica para enviar email o guardar en BD
+        # Por ahora solo mostramos mensaje de éxito
+        messages.success(request, f'¡Gracias {nombre}! Tu mensaje ha sido enviado correctamente. Te responderemos pronto.')
+        return redirect('contacto')
+    
+    return render(request, 'contacto.html')
     return render(request, "noticias/eliminar_noticia.html", context)

@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Acerca de - Portal Robótica{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="hero-section rounded">
+            <div class="container text-center py-5">
+                <h1 class="display-4 hero-title mb-4">
+                    <i class="fas fa-users me-3"></i>
+                    Acerca de Nosotros
+                </h1>
+                <p class="hero-subtitle mb-4">Conoce al equipo detrás del Portal de Noticias sobre Robótica</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Misión y Visión -->
+<div class="row mb-5">
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <div class="text-tech mb-3">
+                    <i class="fas fa-bullseye fa-3x"></i>
+                </div>
+                <h4 class="card-title">Nuestra Misión</h4>
+                <p class="card-text">Proporcionar información actualizada, precisa y accesible sobre el mundo de la robótica, automatización industrial y tecnología robótica del futuro para mantener a nuestra comunidad informada sobre los últimos avances tecnológicos.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <div class="text-tech mb-3">
+                    <i class="fas fa-eye fa-3x"></i>
+                </div>
+                <h4 class="card-title">Nuestra Visión</h4>
+                <p class="card-text">Ser el portal de referencia en español para noticias de robótica, contribuyendo a la educación y difusión de conocimiento tecnológico, inspirando a la próxima generación de ingenieros e innovadores en robótica.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Acerca del Proyecto -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="section-title text-center mb-4">
+                    <i class="fas fa-project-diagram me-2"></i>Sobre el Proyecto
+                </h3>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <p class="lead text-center mb-4">Este portal web es el resultado del proyecto final del curso de Desarrollo Web con Django del programa Informatorio 2025.</p>
+                        
+                        <div class="row text-center">
+                            <div class="col-md-4 mb-3">
+                                <div class="text-tech mb-2">
+                                    <i class="fas fa-graduation-cap fa-2x"></i>
+                                </div>
+                                <h6>Proyecto Académico</h6>
+                                <p class="small text-muted">Desarrollado como trabajo final del Informatorio 2025</p>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="text-tech mb-2">
+                                    <i class="fab fa-python fa-2x"></i>
+                                </div>
+                                <h6>Tecnología Django</h6>
+                                <p class="small text-muted">Construido con Django 5.2.4 y las mejores prácticas</p>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="text-tech mb-2">
+                                    <i class="fas fa-robot fa-2x"></i>
+                                </div>
+                                <h6>Enfoque Especializado</h6>
+                                <p class="small text-muted">Dedicado exclusivamente a noticias de robótica</p>
+                            </div>
+                        </div>
+                        
+                        <hr class="my-4">
+                        
+                        <h5 class="text-center mb-3">Características del Portal</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Sistema completo de gestión de noticias</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Comentarios interactivos</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Categorización por especialidades</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Búsqueda y filtrado avanzado</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Diseño responsive moderno</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Sistema de autenticación</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Panel de administración</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Optimizado para SEO</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Nuestro Equipo -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h3 class="section-title text-center mb-4">
+            <i class="fas fa-users me-2"></i>Nuestro Equipo
+        </h3>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    {% for miembro in equipo %}
+    <div class="col-lg-4 col-md-6 col-sm-8 mb-4">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <div class="mb-3">
+                    <div class="rounded-circle bg-tech text-white d-flex align-items-center justify-content-center mx-auto" style="width: 80px; height: 80px;">
+                        <i class="fas fa-user fa-2x"></i>
+                    </div>
+                </div>
+                <h5 class="card-title">{{ miembro.nombre }}</h5>
+                <h6 class="text-tech mb-3">{{ miembro.rol }}</h6>
+                <p class="card-text text-muted">{{ miembro.descripcion }}</p>
+                <div class="mt-auto">
+                    <a href="https://github.com/{{ miembro.github }}" target="_blank" class="btn btn-outline-dark btn-sm">
+                        <i class="fab fa-github me-1"></i>GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Tecnologías Utilizadas -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="text-center mb-4">
+                    <i class="fas fa-cogs me-2"></i>Tecnologías Utilizadas
+                </h4>
+                <div class="row text-center">
+                    <div class="col-lg-2 col-md-4 col-6 mb-3">
+                        <div class="tech-item">
+                            <i class="fab fa-python fa-3x text-warning mb-2"></i>
+                            <p class="small mb-0">Python 3.12</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 mb-3">
+                        <div class="tech-item">
+                            <i class="fas fa-server fa-3x text-success mb-2"></i>
+                            <p class="small mb-0">Django 5.2.4</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 mb-3">
+                        <div class="tech-item">
+                            <i class="fab fa-bootstrap fa-3x text-primary mb-2"></i>
+                            <p class="small mb-0">Bootstrap 5</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 mb-3">
+                        <div class="tech-item">
+                            <i class="fas fa-database fa-3x text-info mb-2"></i>
+                            <p class="small mb-0">SQLite</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 mb-3">
+                        <div class="tech-item">
+                            <i class="fab fa-html5 fa-3x text-danger mb-2"></i>
+                            <p class="small mb-0">HTML5</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-6 mb-3">
+                        <div class="tech-item">
+                            <i class="fab fa-js-square fa-3x text-warning mb-2"></i>
+                            <p class="small mb-0">JavaScript</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Información Académica -->
+<div class="row">
+    <div class="col-12">
+        <div class="card bg-light">
+            <div class="card-body text-center">
+                <h5 class="card-title">
+                    <i class="fas fa-university me-2"></i>Informatorio 2025
+                </h5>
+                <p class="card-text">Este proyecto forma parte del programa de formación del Informatorio, una iniciativa del Gobierno de la Provincia del Chaco para la capacitación en tecnologías de la información.</p>
+                <p class="text-muted mb-0">
+                    <i class="fas fa-calendar me-1"></i>Proyecto Final - Desarrollo Web con Django
+                    <span class="mx-2">•</span>
+                    <i class="fas fa-users me-1"></i>Grupo N°4
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
