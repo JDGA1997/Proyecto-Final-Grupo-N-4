@@ -1,10 +1,18 @@
 <div align="center">
   <img src="https://github.com/user-attachments/assets/df02cfe1-dd25-41d8-9cc3-2cea31e60d1a" alt="Logo del Proyecto" width="400"/>
 
-# 🤖 Blog de Robótica
+# 🤖 Portal de Noticias sobre Robótica
 ## Proyecto Final - Desarrollo Web con Django - Grupo N°4
 
-[![Django](http#### Características Implementadas
+[![Django](https://img.shields.io/badge/Django-5.2.4-092E20?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com/)
+[![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://html.spec.whatwg.org/)
+![Estado](https://img.shields.io/badge/Estado-En_Desarrollo-yellow?style=for-the-badge)
+
+</div>
+
+#### Características Implementadas
 - ✅ Filtrado por categorías mediante parámetros GET (`?categoria=nombre`)
 - ✅ **Implementación con FBV**: Proyecto estandarizado usando únicamente Vistas Basadas en Funciones
 - ✅ Templates dedicados para cada operación CRUD
@@ -14,17 +22,13 @@
 - 🔲 Filtrado por antigüedad (ascendente y descendente)
 - 🔲 Filtrado por orden alfabético (ascendente y descendente)
 - 🔲 Control de permisos según tipo de usuario
-- 🔲 Subida de imágenes asociadas a artículoselds.io/badge/Django-5.2.4-092E20?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com/)
-[![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://html.spec.whatwg.org/)
-[![Estado](https://img.shields.io/badge/Estado-En_Desarrollo-yellow?style=for-the-badge)]()
+- 🔲 Subida de imágenes asociadas a artículos
 
 </div>
 
 ## 📋 Descripción del Proyecto
 
-Este proyecto es un **blog especializado en robótica** desarrollado como proyecto final del curso de Desarrollo Web del **Informatorio**. La aplicación implementa un sistema completo de gestión de artículos y comentarios sobre robótica, siguiendo las especificaciones académicas establecidas para la evaluación final.
+Este proyecto es un **blog especializado en robótica** desarrollado como proyecto final del curso de Desarrollo Web (2da Etapa) del **Informatorio**. La aplicación implementa un sistema completo de gestión de artículos y comentarios sobre robótica, siguiendo las especificaciones académicas establecidas para la evaluación final.
 
 ### 🎯 Objetivo Principal
 
