@@ -27,4 +27,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', inicio, name="inicio"),
     path('noticias/', include('apps.noticias.urls')),
+    path('auth/', include(('apps.authentication.urls', 'authentication'), namespace='authentication')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT, show_indexes=True)
