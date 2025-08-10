@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Ejecutar Servidor Django",
+			"type": "shell",
+			"command": "& \"C:/Users/Juan Diego/Documents/GitHub/Proyecto-Final-Grupo-N-4/.venv/Scripts/python.exe\" manage.py runserver",
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}
