@@ -6,11 +6,52 @@
     <title>NOTICIAS | ACTUALIZAR</title>
 </head>
 <body>
-    <h1>NOTICIA ACTUALIZADA</h1>
+    <h1>ACTUALIZAR NOTICIA</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        
+        <p>
+            <label for="titulo">Título:</label><br>
+            <input type="text" id="titulo" name="titulo" value="{{ noticia.titulo }}" required maxlength="85">
+        </p>
+        
+        <p>
+            <label for="subtitulo">Subtítulo:</label><br>
+            <input type="text" id="subtitulo" name="subtitulo" value="{{ noticia.subtitulo }}" required maxlength="150">
+        </p>
+        
+        <p>
+            <label for="contenido">Contenido:</label><br>
+            <textarea id="contenido" name="contenido" rows="10" cols="50" required>{{ noticia.contenido }}</textarea>
+        </p>
+        
+        <p>
+            <label for="autor">Autor:</label><br>
+            <select id="autor" name="autor" required>
+                <option value="">Seleccionar autor...</option>
+                {% for autor in autores %}
+                    <option value="{{ autor.autor_id }}" {% if autor.autor_id == noticia.autor.autor_id %}selected{% endif %}>
+                        {{ autor.nombre }}
+                    </option>
+                {% endfor %}
+            </select>
+        </p>
+        
+        <p>
+            <label for="categorias">Categorías:</label><br>
+            <select id="categorias" name="categorias" multiple>
+                {% for categoria in categorias %}
+                    <option value="{{ categoria.categoria_id }}" 
+                        {% if categoria in noticia.categorias.all %}selected{% endif %}>
+                        {{ categoria.nombre }}
+                    </option>
+                {% endfor %}
+            </select>
+            <small>Mantén presionado Ctrl para seleccionar múltiples categorías</small>
+        </p>
+        
         <button type="submit">Actualizar</button>
+        <a href="{% url 'todas_las_noticias' %}">Cancelar</a>
     </form>
 </body>
 </html>

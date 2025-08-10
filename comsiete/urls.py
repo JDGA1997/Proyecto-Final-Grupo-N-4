@@ -27,5 +27,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', inicio, name="inicio"),
     path('noticias/', include('apps.noticias.urls')),
-    path('eventos/', include('apps.eventos.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT, show_indexes=True)

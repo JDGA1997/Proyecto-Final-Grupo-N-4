@@ -1,18 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Noticia, Autor, Categoria
 
-from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
 
-
-# VISTA BASADA EN CLASES (CBV)
-class TodasLasNoticiasView(ListView):
-    model = Noticia
-    template_name = "noticias/todas_noticias.html"
-    context_object_name = "noticias"
-
-# VISTA BASADA EN FUNCIONES (FBV)
+# VISTA BASADA EN FUNCIONES (FBV) - LISTAR TODAS LAS NOTICIAS
 def todas_las_noticias(request):
     categoria_param = request.GET.get("categoria", "").strip()
 
@@ -29,59 +19,82 @@ def todas_las_noticias(request):
     return render(request, "noticias/todas_noticias.html", context)
 
 
-
-
-
-# VISTA BASADA EN CLASES (CBV)
-class UnaNoticiaView(DetailView):
-    model = Noticia
-    template_name = "noticias/una_noticia.html"
-    context_object_name = "noticia"
-    pk_url_kwarg = "noticia_id"
-
-
-
-
-
-# VISTA BASADA EN CLASES (CBV)
+# VISTA BASADA EN FUNCIONES (FBV) - DETALLE DE UNA NOTICIA
 def una_noticia(request, noticia_id):
-    noticia = Noticia.objects.get(noticia_id=noticia_id)
+    noticia = get_object_or_404(Noticia, noticia_id=noticia_id)
     context = {"noticia": noticia}
     return render(request, "noticias/una_noticia.html", context)
 
 
+# VISTA BASADA EN FUNCIONES (FBV) - CREAR NUEVA NOTICIA
+def crear_noticia(request):
+    if request.method == "POST":
+        titulo = request.POST.get('titulo')
+        subtitulo = request.POST.get('subtitulo')
+        contenido = request.POST.get('contenido')
+        autor_id = request.POST.get('autor')
+        categorias_ids = request.POST.getlist('categorias')
+
+        # Crear la noticia
+        noticia = Noticia.objects.create(
+            titulo=titulo,
+            subtitulo=subtitulo,
+            contenido=contenido,
+            autor_id=autor_id
+        )
+        
+        # Asignar categorías
+        if categorias_ids:
+            noticia.categorias.set(categorias_ids)
+
+        return redirect("todas_las_noticias")
+
+    # Si es GET, mostrar el formulario
+    autores = Autor.objects.all()
+    categorias = Categoria.objects.all()
+    context = {
+        'autores': autores,
+        'categorias': categorias
+    }
+    return render(request, "noticias/nueva_noticia.html", context)
 
 
+# VISTA BASADA EN FUNCIONES (FBV) - ACTUALIZAR NOTICIA
+def actualizar_noticia(request, noticia_id):
+    noticia = get_object_or_404(Noticia, noticia_id=noticia_id)
+    
+    if request.method == "POST":
+        noticia.titulo = request.POST.get('titulo')
+        noticia.subtitulo = request.POST.get('subtitulo')
+        noticia.contenido = request.POST.get('contenido')
+        autor_id = request.POST.get('autor')
+        if autor_id:
+            noticia.autor_id = autor_id
+        
+        categorias_ids = request.POST.getlist('categorias')
+        
+        noticia.save()
+        
+        # Actualizar categorías
+        if categorias_ids:
+            noticia.categorias.set(categorias_ids)
 
-# VISTA BASADA EN CLASES (CBV)
-class CrearNoticiaView(CreateView):
-    model = Noticia
-    template_name = "noticias/nueva_noticia.html"
-    fields = ["titulo", "subtitulo", "contenido", "autor", "categorias"]
-    success_url = reverse_lazy("todas_las_noticias")
+        return redirect("todas_las_noticias")
 
-# VISTA BASADA EN CLASES (CBV)
-class ActualizarNoticiaView(UpdateView):
-    model = Noticia
-    template_name = "noticias/actualizar_noticia.html"
-    fields = ["titulo", "subtitulo", "contenido"]
-    success_url = reverse_lazy("todas_las_noticias")
-    pk_url_kwarg = "noticia_id"
+    # Si es GET, mostrar el formulario con datos actuales
+    autores = Autor.objects.all()
+    categorias = Categoria.objects.all()
+    context = {
+        'noticia': noticia,
+        'autores': autores,
+        'categorias': categorias
+    }
+    return render(request, "noticias/actualizar_noticia.html", context)
 
 
-
-
-
-# VISTA BASADA EN CLASES (CBV)
-class EliminarNoticiaView(DeleteView):
-    model = Noticia
-    template_name = "noticias/eliminar_noticia.html"
-    success_url = reverse_lazy("todas_las_noticias")
-    pk_url_kwarg = "noticia_id"
-
-# VISTA BASADA EN FUNCIONES (FBV)
+# VISTA BASADA EN FUNCIONES (FBV) - ELIMINAR NOTICIA
 def eliminar_noticia(request, noticia_id):
-    noticia = Noticia.objects.get(noticia_id=noticia_id)
+    noticia = get_object_or_404(Noticia, noticia_id=noticia_id)
 
     if request.method == "POST":
         noticia.delete()

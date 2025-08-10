@@ -7,16 +7,30 @@
 </head>
 <body>
     <h1>¿Estás seguro de que queres eliminar esta noticia?</h1>
-    <hr>
-    <p>ID: <small>{{noticia.noticia_id}}</small></p>
-    <p>TITULO: <small>{{noticia.titulo}}</small></p>
-    <p>SUBTITULO: <small>{{noticia.subtitulo}}</small></p>
-    <p>CONTENIDO: <small>{{noticia.contenido}}</small></p>
-    <hr>
+    
+    <div style="background-color: #f8f8f8; padding: 15px; border: 1px solid #ddd; margin: 20px 0;">
+        <p><strong>ID:</strong> {{noticia.noticia_id}}</p>
+        <p><strong>TÍTULO:</strong> {{noticia.titulo}}</p>
+        <p><strong>SUBTÍTULO:</strong> {{noticia.subtitulo}}</p>
+        <p><strong>AUTOR:</strong> {{noticia.autor.nombre}}</p>
+        <p><strong>FECHA:</strong> {{noticia.fecha}}</p>
+        <p><strong>CONTENIDO:</strong> {{noticia.contenido|truncatewords:30}}</p>
+    </div>
 
-    <form method="post">
+    <form method="post" style="display: inline;">
         {% csrf_token %}
-        <button type="submit">Sí, eliminar</button>
+        <button type="submit" style="background-color: red; color: white; padding: 10px 20px; border: none; cursor: pointer;">
+            🗑️ Sí, eliminar definitivamente
+        </button>
     </form>
+    
+    <a href="{% url 'todas_las_noticias' %}" style="background-color: gray; color: white; padding: 10px 20px; text-decoration: none; margin-left: 10px;">
+        ❌ Cancelar
+    </a>
+    
+    <p style="margin-top: 20px;">
+        <a href="{% url 'una_noticia' noticia.noticia_id %}">👁️ Ver detalle de la noticia</a> |
+        <a href="{% url 'actualizar_noticia' noticia.noticia_id %}">✏️ Editar en su lugar</a>
+    </p>
 </body>
 </html>
