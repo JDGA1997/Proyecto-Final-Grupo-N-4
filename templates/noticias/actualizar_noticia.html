@@ -1,57 +1,198 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOTICIAS | ACTUALIZAR</title>
-</head>
-<body>
-    <h1>ACTUALIZAR NOTICIA</h1>
-    <form method="post">
-        {% csrf_token %}
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Actualizar Noticia - Portal Robótica{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-edit me-2 text-warning"></i>
+                    Actualizar Noticia
+                </h3>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="titulo" class="form-label">
+                                    <i class="fas fa-heading me-1"></i>Título *
+                                </label>
+                                <input type="text" 
+                                       class="form-control" 
+                                       id="titulo" 
+                                       name="titulo" 
+                                       value="{{ noticia.titulo }}"
+                                       required 
+                                       maxlength="85">
+                                <div class="form-text">Máximo 85 caracteres</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="autor" class="form-label">
+                                    <i class="fas fa-user me-1"></i>Autor *
+                                </label>
+                                <select class="form-select" id="autor" name="autor" required>
+                                    {% for autor in autores %}
+                                        <option value="{{ autor.autor_id }}" 
+                                            {% if autor.autor_id == noticia.autor.autor_id %}selected{% endif %}>
+                                            {{ autor.nombre }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="subtitulo" class="form-label">
+                            <i class="fas fa-text-width me-1"></i>Subtítulo *
+                        </label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="subtitulo" 
+                               name="subtitulo" 
+                               value="{{ noticia.subtitulo }}"
+                               required 
+                               maxlength="150">
+                        <div class="form-text">Máximo 150 caracteres</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="contenido" class="form-label">
+                            <i class="fas fa-align-left me-1"></i>Contenido *
+                        </label>
+                        <textarea class="form-control" 
+                                  id="contenido" 
+                                  name="contenido" 
+                                  rows="8" 
+                                  required>{{ noticia.contenido }}</textarea>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="categorias" class="form-label">
+                                    <i class="fas fa-tags me-1"></i>Categorías
+                                </label>
+                                <select class="form-select" id="categorias" name="categorias" multiple>
+                                    {% for categoria in categorias %}
+                                        <option value="{{ categoria.categoria_id }}"
+                                            {% if categoria in noticia.categorias.all %}selected{% endif %}>
+                                            {{ categoria.nombre }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                                <div class="form-text">Mantén presionado Ctrl para seleccionar múltiples categorías</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="imagen_principal" class="form-label">
+                                    <i class="fas fa-image me-1"></i>Imagen Principal
+                                </label>
+                                {% if noticia.imagen_principal %}
+                                    <div class="mb-2">
+                                        <img src="{{ noticia.imagen_principal.url }}" 
+                                             class="img-thumbnail" 
+                                             style="max-height: 100px;" 
+                                             alt="Imagen actual">
+                                        <small class="form-text text-muted d-block">Imagen actual</small>
+                                    </div>
+                                {% endif %}
+                                <input type="file" 
+                                       class="form-control" 
+                                       id="imagen_principal" 
+                                       name="imagen_principal"
+                                       accept="image/*">
+                                <div class="form-text">
+                                    {% if noticia.imagen_principal %}
+                                        Selecciona una nueva imagen para reemplazar la actual
+                                    {% else %}
+                                        Formatos soportados: JPG, PNG, GIF
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'una_noticia' noticia.noticia_id %}" class="btn btn-secondary">
+                            <i class="fas fa-times me-1"></i>Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-warning text-white">
+                            <i class="fas fa-save me-1"></i>Actualizar Noticia
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
         
-        <p>
-            <label for="titulo">Título:</label><br>
-            <input type="text" id="titulo" name="titulo" value="{{ noticia.titulo }}" required maxlength="85">
-        </p>
+        <!-- Información de la noticia -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h6 class="mb-0">
+                    <i class="fas fa-info-circle me-2"></i>Información de la noticia
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Creada:</strong> {{ noticia.fecha|date:"d/m/Y H:i" }}</p>
+                        <p><strong>Última actualización:</strong> {{ noticia.fecha_actualizacion|date:"d/m/Y H:i" }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Visualizaciones:</strong> {{ noticia.visitas }}</p>
+                        <p><strong>Estado:</strong> 
+                            {% if noticia.activa %}
+                                <span class="badge bg-success">Activa</span>
+                            {% else %}
+                                <span class="badge bg-danger">Inactiva</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Contador de caracteres para título y subtítulo
+    document.addEventListener('DOMContentLoaded', function() {
+        const titulo = document.getElementById('titulo');
+        const subtitulo = document.getElementById('subtitulo');
         
-        <p>
-            <label for="subtitulo">Subtítulo:</label><br>
-            <input type="text" id="subtitulo" name="subtitulo" value="{{ noticia.subtitulo }}" required maxlength="150">
-        </p>
+        function updateCounter(input, maxLength) {
+            const remaining = maxLength - input.value.length;
+            const helpText = input.nextElementSibling;
+            helpText.textContent = `${remaining} caracteres restantes`;
+            
+            if (remaining < 10) {
+                helpText.style.color = '#dc3545';
+            } else if (remaining < 20) {
+                helpText.style.color = '#fd7e14';
+            } else {
+                helpText.style.color = '#6c757d';
+            }
+        }
         
-        <p>
-            <label for="contenido">Contenido:</label><br>
-            <textarea id="contenido" name="contenido" rows="10" cols="50" required>{{ noticia.contenido }}</textarea>
-        </p>
+        titulo.addEventListener('input', () => updateCounter(titulo, 85));
+        subtitulo.addEventListener('input', () => updateCounter(subtitulo, 150));
         
-        <p>
-            <label for="autor">Autor:</label><br>
-            <select id="autor" name="autor" required>
-                <option value="">Seleccionar autor...</option>
-                {% for autor in autores %}
-                    <option value="{{ autor.autor_id }}" {% if autor.autor_id == noticia.autor.autor_id %}selected{% endif %}>
-                        {{ autor.nombre }}
-                    </option>
-                {% endfor %}
-            </select>
-        </p>
-        
-        <p>
-            <label for="categorias">Categorías:</label><br>
-            <select id="categorias" name="categorias" multiple>
-                {% for categoria in categorias %}
-                    <option value="{{ categoria.categoria_id }}" 
-                        {% if categoria in noticia.categorias.all %}selected{% endif %}>
-                        {{ categoria.nombre }}
-                    </option>
-                {% endfor %}
-            </select>
-            <small>Mantén presionado Ctrl para seleccionar múltiples categorías</small>
-        </p>
-        
-        <button type="submit">Actualizar</button>
-        <a href="{% url 'todas_las_noticias' %}">Cancelar</a>
-    </form>
-</body>
-</html>
+        // Ejecutar una vez al cargar para mostrar contadores iniciales
+        updateCounter(titulo, 85);
+        updateCounter(subtitulo, 150);
+    });
+</script>
+{% endblock %}

@@ -1,59 +1,186 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOTICIAS | INICIO</title>
-</head>
+{% block title %}Todas las Noticias - Portal Robótica{% endblock %}
 
-<body>
-    <H1>TODAS LAS NOTICIAS DEL PORTAL</H1>
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="display-5 text-center mb-4">
+            <i class="fas fa-newspaper me-3 text-tech"></i>
+            Todas las Noticias
+        </h1>
+    </div>
+</div>
 
-    <!-- Enlaces de navegación -->
-    <p>
-        <a href="{% url 'crear_noticia' %}" style="background-color: green; color: white; padding: 5px 10px; text-decoration: none;">➕ Crear Nueva Noticia</a>
-        <a href="{% url 'inicio' %}">🏠 Ir al Inicio</a>
-    </p>
+<!-- Barra de herramientas -->
+<div class="row mb-4">
+    <div class="col-md-8">
+        <!-- Formulario de búsqueda -->
+        <form method="get" class="d-flex">
+            <input 
+                type="text" 
+                name="busqueda" 
+                class="form-control me-2" 
+                placeholder="Buscar noticias..." 
+                value="{{ busqueda }}"
+            >
+            <select name="categoria" class="form-select me-2" style="max-width: 200px;">
+                <option value="">Todas las categorías</option>
+                {% for categoria in categorias %}
+                    <option value="{{ categoria.nombre }}" 
+                        {% if categoria.nombre == categoria_seleccionada %}selected{% endif %}>
+                        {{ categoria.nombre }}
+                    </option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-outline-primary">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+    </div>
+    <div class="col-md-4 text-end">
+        <a href="{% url 'crear_noticia' %}" class="btn btn-success">
+            <i class="fas fa-plus me-1"></i>Crear Nueva Noticia
+        </a>
+    </div>
+</div>
 
-    <form method="get" style="margin-left: 50px;">
-        <input type="text" name="categoria" placeholder="Buscar categoría..." value="{{categoria_seleccionada}}">
-        <button type="submit">Buscar</button>
-    </form>
+<!-- Filtros activos -->
+{% if categoria_seleccionada or busqueda %}
+<div class="row mb-3">
+    <div class="col-12">
+        <div class="alert alert-info d-flex justify-content-between align-items-center">
+            <div>
+                <strong>Filtros activos:</strong>
+                {% if categoria_seleccionada %}
+                    <span class="badge bg-primary me-1">Categoría: {{ categoria_seleccionada }}</span>
+                {% endif %}
+                {% if busqueda %}
+                    <span class="badge bg-secondary me-1">Búsqueda: "{{ busqueda }}"</span>
+                {% endif %}
+            </div>
+            <a href="{% url 'todas_las_noticias' %}" class="btn btn-sm btn-outline-secondary">
+                <i class="fas fa-times me-1"></i>Limpiar filtros
+            </a>
+        </div>
+    </div>
+</div>
+{% endif %}
 
-    <p>
-        <a href="?">Limpiar filtros</a>
-        <a href="?categoria=politica">Política</a>
-        <a href="?categoria=tecnologia">Tecnología</a>
-        <a href="?categoria=deportes">Deportes</a>
-    </p>
-
-    <!-- Lista de noticias -->
-    {% if noticias %}
+<!-- Lista de noticias -->
+{% if noticias %}
+    <div class="row">
         {% for noticia in noticias %}
-            <article style="border: 1px solid #ccc; padding: 15px; margin: 10px 0;">
-                <h3>
-                    <a href="{% url 'una_noticia' noticia.noticia_id %}">{{noticia.titulo}}</a>
-                </h3>
-                <h4>{{noticia.subtitulo}}</h4>
-                <p><small>Autor: {{ noticia.autor.nombre }} | Fecha: {{ noticia.fecha }}</small></p>
-                <small>Categorias: {{ noticia.categorias.all|join:', ' }}</small>
-                <p>{{noticia.contenido|truncatewords:20}}</p>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                {% if noticia.imagen_principal %}
+                    <img src="{{ noticia.imagen_principal.url }}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="{{ noticia.titulo }}">
+                {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <i class="fas fa-robot fa-3x text-muted"></i>
+                    </div>
+                {% endif %}
                 
-                <!-- Acciones CRUD -->
-                <div style="margin-top: 10px;">
-                    <a href="{% url 'una_noticia' noticia.noticia_id %}" style="color: blue;">👁️ Ver</a> |
-                    <a href="{% url 'actualizar_noticia' noticia.noticia_id %}" style="color: orange;">✏️ Editar</a> |
-                    <a href="{% url 'eliminar_noticia' noticia.noticia_id %}" style="color: red;">🗑️ Eliminar</a>
+                <div class="card-body d-flex flex-column">
+                    <div class="mb-2">
+                        {% for categoria in noticia.categorias.all %}
+                            <span class="badge bg-secondary me-1">
+                                <i class="{{ categoria.icono }} me-1"></i>{{ categoria.nombre }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                    
+                    <h5 class="card-title">{{ noticia.titulo }}</h5>
+                    <p class="card-text text-muted">{{ noticia.subtitulo|truncatechars:100 }}</p>
+                    
+                    <div class="mt-auto">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <small class="text-muted">
+                                <i class="fas fa-user me-1"></i>{{ noticia.autor.nombre }}
+                            </small>
+                            <small class="text-muted">
+                                <i class="fas fa-eye me-1"></i>{{ noticia.visitas }}
+                            </small>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">
+                                <i class="fas fa-calendar me-1"></i>{{ noticia.fecha|date:"d/m/Y" }}
+                            </small>
+                            <div>
+                                <a href="{% url 'una_noticia' noticia.noticia_id %}" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-eye me-1"></i>Leer
+                                </a>
+                                <a href="{% url 'actualizar_noticia' noticia.noticia_id %}" class="btn btn-outline-secondary btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </article>
-            <hr>
+            </div>
+        </div>
         {% endfor %}
-    {% else %}
-        <p><em>No se encontraron noticias{% if categoria_seleccionada %} para la categoría "{{ categoria_seleccionada }}"{% endif %}.</em></p>
-        <p><a href="{% url 'crear_noticia' %}">¿Quieres crear la primera noticia?</a></p>
+    </div>
+
+    <!-- Paginación -->
+    {% if noticias.has_other_pages %}
+    <div class="row mt-4">
+        <div class="col-12">
+            <nav aria-label="Paginación de noticias">
+                <ul class="pagination justify-content-center">
+                    {% if noticias.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1{% if categoria_seleccionada %}&categoria={{ categoria_seleccionada }}{% endif %}{% if busqueda %}&busqueda={{ busqueda }}{% endif %}">
+                                <i class="fas fa-angle-double-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ noticias.previous_page_number }}{% if categoria_seleccionada %}&categoria={{ categoria_seleccionada }}{% endif %}{% if busqueda %}&busqueda={{ busqueda }}{% endif %}">
+                                <i class="fas fa-angle-left"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    <li class="page-item active">
+                        <span class="page-link">
+                            {{ noticias.number }} de {{ noticias.paginator.num_pages }}
+                        </span>
+                    </li>
+
+                    {% if noticias.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ noticias.next_page_number }}{% if categoria_seleccionada %}&categoria={{ categoria_seleccionada }}{% endif %}{% if busqueda %}&busqueda={{ busqueda }}{% endif %}">
+                                <i class="fas fa-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ noticias.paginator.num_pages }}{% if categoria_seleccionada %}&categoria={{ categoria_seleccionada }}{% endif %}{% if busqueda %}&busqueda={{ busqueda }}{% endif %}">
+                                <i class="fas fa-angle-double-right"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
     {% endif %}
 
-</body>
-
-</html>
+{% else %}
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center py-5">
+                <i class="fas fa-newspaper fa-5x text-muted mb-3"></i>
+                <h3>No se encontraron noticias</h3>
+                {% if categoria_seleccionada or busqueda %}
+                    <p class="text-muted">No hay noticias que coincidan con los filtros seleccionados.</p>
+                    <a href="{% url 'todas_las_noticias' %}" class="btn btn-outline-primary">Ver todas las noticias</a>
+                {% else %}
+                    <p class="text-muted">Aún no hay noticias publicadas.</p>
+                    <a href="{% url 'crear_noticia' %}" class="btn btn-primary">Crear la primera noticia</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

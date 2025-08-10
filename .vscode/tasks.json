@@ -4,7 +4,7 @@
 		{
 			"label": "Ejecutar Servidor Django",
 			"type": "shell",
-			"command": "& \"$env:PWD\\.venv\\Scripts\\python.exe\" manage.py runserver",
+			"command": "& \"${workspaceFolder}\\.venv\\Scripts\\python.exe\" manage.py runserver",
 			"group": "build",
 			"isBackground": false,
 			"problemMatcher": []
