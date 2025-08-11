@@ -9,7 +9,7 @@
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.1.3-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
 [![Pillow](https://img.shields.io/badge/Pillow-11.3.0-4285F4?style=for-the-badge&logo=python&logoColor=white)](https://pillow.readthedocs.io/)
 [![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
-![Estado](https://img.shields.io/badge/Estado-Completado-brightgreen?style=for-the-badge)
+![Estado](https://img.shields.io/badge/Estado-En%20Desarrollo-orange?style=for-the-badge)
 
 *Portal moderno de noticias especializadas en robótica, automatización industrial y tecnología robótica del futuro*
 
@@ -28,7 +28,7 @@
 - [🌐 Navegación y Páginas](#-navegación-y-páginas)
 - [📱 Diseño Responsive](#-diseño-responsive)
 - [🔧 Configuración Adicional](#-configuración-adicional)
-- [👥 Créditos](#-créditos)
+- [👥 Equipo](#-equipo)
 
 ---
 
@@ -42,7 +42,8 @@ El **Portal de Noticias sobre Robótica** es una aplicación web moderna desarro
 |:---------------|:------------|:------:|
 | **🎨 UI Moderna** | Interfaz Bootstrap 5 con efectos visuales | ✅ |
 | **📱 Responsive** | Adaptable a móviles, tablets y desktop | ✅ |
-| **🔐 Autenticación** | Sistema de usuarios integrado | ✅ |
+| **🔐 Autenticación** | Sistema de usuarios integrado | 🚧 |
+| **🔑 Perfiles de Usuario** | Visitante, Miembro, Colaborador | 🚧 |
 | **📸 Multimedia** | Soporte completo para imágenes | ✅ |
 | **🔍 Búsqueda Avanzada** | Filtrado inteligente y ordenamiento | ✅ |
 | **💬 Comentarios** | Sistema completo de comentarios | ✅ |
@@ -55,7 +56,22 @@ El **Portal de Noticias sobre Robótica** es una aplicación web moderna desarro
 
 ## ✨ Nuevas Funcionalidades Implementadas
 
-### 🔍 **Sistema de Ordenamiento Avanzado**
+### � **Sistema de Autenticación Implementado**
+- ✅ **App de autenticación**: Nueva aplicación `apps.authentication` creada
+- ✅ **Registro de usuarios**: Formulario funcional con validaciones
+- ✅ **Login/Logout**: Sistema básico de inicio y cierre de sesión
+- ✅ **Templates de autenticación**: Páginas de login y registro responsivas
+- 🚧 **Modelo de Perfil**: En desarrollo - tipos de usuario (Visitante, Miembro, Colaborador)
+- 🚧 **Control de permisos**: Pendiente implementación de restricciones por perfil
+- 🚧 **Navbar dinámico**: Pendiente actualización según estado de autenticación
+
+### 💻 **Arquitectura Modular Mejorada**
+- ✅ **Apps separadas**: `noticias` y `authentication` con responsabilidades claras
+- ✅ **Settings modulares**: Configuraciones por ambiente (base, local, production)
+- ✅ **URLs organizadas**: Sistema de namespaces para mejor organización
+- ✅ **Migraciones actualizadas**: Base de datos sincronizada con nuevos modelos
+
+### �🔍 **Sistema de Ordenamiento Avanzado**
 - ✅ **Ordenamiento por fecha**: Ascendente (más antiguos primero) y Descendente (más recientes primero)
 - ✅ **Ordenamiento alfabético**: Ascendente (A-Z) y Descendente (Z-A)
 - ✅ **Interfaz intuitiva**: Dropdown con opciones claras para el usuario
@@ -174,24 +190,33 @@ El **Portal de Noticias sobre Robótica** es una aplicación web moderna desarro
 ```
 Proyecto-Final-Grupo-N-4/
 ├── 📁 apps/
-│   └── 📁 noticias/              # App principal de noticias
-│       ├── 📄 models.py          # Modelos mejorados con imágenes
-│       ├── 📄 views.py           # Vistas con búsqueda y paginación
-│       ├── 📄 admin.py           # Panel admin personalizado
-│       ├── 📄 urls.py            # URLs organizadas
-│       └── 📁 migrations/        # Migraciones de base de datos
+│   ├── 📁 noticias/              # App principal de noticias
+│   │   ├── 📄 models.py          # Modelos mejorados con imágenes
+│   │   ├── 📄 views.py           # Vistas con búsqueda y paginación
+│   │   ├── 📄 admin.py           # Panel admin personalizado
+│   │   ├── 📄 urls.py            # URLs organizadas
+│   │   └── 📁 migrations/        # Migraciones de base de datos
+│   └── 📁 authentication/        # ✨ NUEVA: App de autenticación
+│       ├── 📄 models.py          # 🚧 Modelos de perfil (en desarrollo)
+│       ├── 📄 views.py           # Vistas de login/registro
+│       ├── 📄 forms.py           # Formularios de autenticación
+│       ├── 📄 urls.py            # URLs de auth (/auth/)
+│       └── 📁 migrations/        # Migraciones de autenticación
 ├── 📁 grupo4/
 │   ├── 📁 settings/              # Configuraciones por ambiente
-│   │   ├── 📄 base.py            # Configuración base
+│   │   ├── 📄 base.py            # Configuración base + nueva app
 │   │   ├── 📄 local.py           # Desarrollo local
 │   │   └── 📄 production.py      # Producción
-│   ├── 📄 urls.py                # URLs principales
+│   ├── 📄 urls.py                # URLs principales + auth
 │   └── 📄 views.py               # Vista de inicio
 ├── 📁 templates/                 # Templates limpios y optimizados
 │   ├── 📄 base.html              # Template base responsivo
 │   ├── 📄 index.html             # Página de inicio moderna
 │   ├── 📄 acerca_de.html         # ✨ NUEVA: Página sobre el equipo
 │   ├── 📄 contacto.html          # ✨ NUEVA: Página de contacto
+│   ├── 📁 auth/                  # ✨ NUEVA: Templates de autenticación
+│   │   ├── 📄 login.html         # Página de inicio de sesión
+│   │   └── 📄 register.html      # Página de registro
 │   └── 📁 noticias/              # Templates de noticias
 │       ├── 📄 todas_noticias.html   # ✨ MEJORADA: Con filtros avanzados
 │       ├── 📄 una_noticia.html      # ✨ NUEVA: Detalle completo
@@ -258,6 +283,8 @@ python manage.py runserver
 ### **8. Acceder a la Aplicación**
 - **Portal Principal**: http://127.0.0.1:8000/
 - **Lista de Noticias**: http://127.0.0.1:8000/noticias/
+- **🆕 Login**: http://127.0.0.1:8000/auth/login/
+- **🆕 Registro**: http://127.0.0.1:8000/auth/register/
 - **🆕 Acerca de**: http://127.0.0.1:8000/noticias/acerca-de/
 - **🆕 Contacto**: http://127.0.0.1:8000/noticias/contacto/
 - **Panel de Administración**: http://127.0.0.1:8000/admin/
@@ -286,7 +313,12 @@ python manage.py runserver
 - **Paginación inteligente** de resultados con preservación de filtros
 - **URLs amigables** optimizadas para SEO
 
-### **💬 Sistema de Comentarios**
+### **� Sistema de Autenticación (En Desarrollo)**
+- **Registro de usuarios**: Formulario funcional con validaciones Django
+- **Login/Logout**: Sistema básico implementado con redirecciones
+- **🚧 Perfiles de usuario**: En desarrollo - tipos Visitante, Miembro, Colaborador
+- **🚧 Control de permisos**: Pendiente implementación por tipo de perfil
+- **Templates responsivos**: Páginas de autenticación integradas al diseño
 - **Comentarios por noticia** con sistema de moderación
 - **Interfaz intuitiva** para usuarios
 - **Validación robusta** de datos de entrada
@@ -319,6 +351,9 @@ python manage.py runserver
 | `/noticias/eliminar/<id>/` | Eliminar noticia | Confirmación de eliminación |
 | `/noticias/acerca-de/` | 🆕 Acerca de | Información del equipo y proyecto |
 | `/noticias/contacto/` | 🆕 Contacto | Formulario de contacto y FAQ |
+| `/auth/login/` | 🆕 Iniciar sesión | Login de usuarios registrados |
+| `/auth/register/` | 🆕 Registro | Crear nueva cuenta de usuario |
+| `/auth/logout/` | 🆕 Cerrar sesión | Logout y redirección |
 | `/admin/` | Panel administrativo | Gestión completa del contenido |
 
 ### **🆕 Características de Navegación**
@@ -356,7 +391,16 @@ python manage.py runserver
 
 ### **🆕 Nuevas Configuraciones de URLs**
 ```python
-# apps/noticias/urls.py - Rutas actualizadas
+# grupo4/urls.py - URLs principales actualizadas
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', inicio, name="inicio"),
+    path('noticias/', include('apps.noticias.urls')),
+    path('auth/', include(('apps.authentication.urls', 'authentication'), 
+         namespace='authentication')),  # ✨ NUEVA RUTA DE AUTENTICACIÓN
+]
+
+# apps/noticias/urls.py - Rutas de noticias
 urlpatterns = [
     path('', todas_las_noticias, name="todas_las_noticias"),
     path('<int:noticia_id>/', una_noticia, name='una_noticia'),  # ✨ NUEVA
@@ -365,6 +409,13 @@ urlpatterns = [
     path('eliminar/<int:noticia_id>/', eliminar_noticia, name='eliminar_noticia'),
     path('acerca-de/', acerca_de, name='acerca_de'),             # ✨ NUEVA
     path('contacto/', contacto, name='contacto'),                # ✨ NUEVA
+]
+
+# apps/authentication/urls.py - Rutas de autenticación ✨ NUEVAS
+urlpatterns = [
+    path('register/', register_view, name='register'),
+    path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
 ]
 ```
 
@@ -425,7 +476,40 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 
 ---
 
-## 👥 Créditos
+## � **Estado Actual del Desarrollo**
+
+### **✅ Funcionalidades Completadas (Sprint 1)**
+- ✅ **Configuración inicial** del proyecto Django con estructura modular
+- ✅ **Modelos de datos** completos (Noticia, Autor, Categoria, ImagenNoticia, Comentario)
+- ✅ **Sistema CRUD** para noticias con validaciones
+- ✅ **Búsqueda y filtrado** avanzado con múltiples criterios
+- ✅ **Paginación** inteligente preservando filtros
+- ✅ **Templates responsive** con Bootstrap 5 y diseño profesional
+- ✅ **Panel de administración** personalizado con Django Admin
+
+### **🚧 Funcionalidades en Desarrollo (Sprint 2)**
+- 🚧 **Sistema de autenticación**: App creada, funcionalidad básica implementada
+- 🚧 **Modelo de perfiles**: Pendiente implementación de tipos de usuario
+- 🚧 **Control de permisos**: Falta integración con diferentes tipos de perfil
+- 🚧 **Navbar dinámico**: Pendiente mostrar estado de autenticación
+- 🚧 **Sistema de comentarios**: Modelo existe, falta integración con permisos
+
+### **📋 Próximos Pasos (Sprint 3)**
+- ⏳ **Modelo Profile**: Implementar Visitante, Miembro, Colaborador
+- ⏳ **Decoradores de permisos**: Restricciones por tipo de usuario
+- ⏳ **Templates de autenticación**: Mejorar diseño y validaciones
+- ⏳ **Formulario de comentarios**: Integrar con sistema de permisos
+- ⏳ **Tests unitarios**: Cobertura de funcionalidades críticas
+
+### **🎯 Entrega Final (Sprint 4)**
+- ⏳ **Deployment**: Configuración para producción
+- ⏳ **Documentación**: Manual de usuario y técnico
+- ⏳ **Testing completo**: Validación integral del sistema
+- ⏳ **Optimizaciones**: Performance y seguridad
+
+---
+
+## �👥 Equipo
 
 Este proyecto fue posible gracias al trabajo colaborativo de nuestro equipo:
 
@@ -446,6 +530,7 @@ Este proyecto fue posible gracias al trabajo colaborativo de nuestro equipo:
 ### 🤖 **Portal de Noticias sobre Robótica**
 
 *Desarrollado con ❤️ por el Grupo N°4 - Informatorio 2025*
+*Fecha de última actualización: Agosto 11, 2025*
 
 [![Made with Django](https://img.shields.io/badge/Made%20with-Django-092E20?style=flat-square&logo=django)](https://www.djangoproject.com/)
 [![Powered by Bootstrap](https://img.shields.io/badge/Powered%20by-Bootstrap-7952B3?style=flat-square&logo=bootstrap)](https://getbootstrap.com/)
