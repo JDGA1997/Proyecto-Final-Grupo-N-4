@@ -200,15 +200,15 @@ def acerca_de(request):
         'equipo': [
             {
                 'nombre': 'Aldo Andrés Acosta', 
-                'rol': 'Desarrollador Frontend',
-                'descripcion': 'Experto en diseño UI/UX y Bootstrap',
+                'rol': '',
+                'descripcion': '',
                 'github': 'Andres777777'
             },
             {
-                'nombre': 'Integrante2',
+                'nombre': 'Valentino André Cabás',
                 'rol': '',
                 'descripcion': '',
-                'github': ''
+                'github': 'Valen-cbs'
             },
                         {
                 'nombre': 'Integrante3',

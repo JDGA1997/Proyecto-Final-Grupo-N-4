@@ -5,7 +5,7 @@
 
 {% block content %}
 <h2>Crea una nueva cuenta</h2>
-<form action="{% url 'apps.authentication:register' %}" method="post">
+<form action="{% url 'authentication:register' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Registrar</button>

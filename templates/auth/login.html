@@ -4,8 +4,8 @@
 {% block title %}Login - Portal de Robótica{% endblock %}
 
 {% block content %}
-<h2>INGRESA a tu cuenta</h2>
-<form action="{% url 'apps.authentication:login' %}" method="post">
+<h2>Ingresa a tu cuenta</h2>
+<form action="{% url 'authentication:login' %}" method="post">
     {% csrf_token %}
     <p><input type="text" name="username" placeholder="Usuario" required autofocus></p>
     <p><input type="password" name="password" placeholder="Contraseña" required></p>

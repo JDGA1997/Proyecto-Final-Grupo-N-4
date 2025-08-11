@@ -9,7 +9,7 @@ def register_view(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('apps.authentication:login')
+            return redirect('authentication:login')
     else:
         form = RegisterForm()
     
@@ -24,12 +24,12 @@ def login_view(request):
             login(request, user)
             return redirect('inicio')
         else:
-            messages.error(request, 'usuario o contraseña incorrectos')
+            messages.error(request, 'Usuario o contraseña incorrectos')
 
     return render(request, 'auth/login.html')    # Placeholder for login view logic
 
 
 def logout_view(request):
     logout(request)
-    return redirect("apps.authentication:login")
+    return redirect("authentication:login")
 

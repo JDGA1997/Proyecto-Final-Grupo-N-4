@@ -4,9 +4,7 @@ from .views import register_view, login_view, logout_view
 app_name = 'apps.authentication'
 
 urlpatterns = [
-    # path('register/'),
     path('register/', register_view, name='register'),
     path('login/', login_view, name='login'),
-    # path('login/'),
-    # path('logout/'),
+    path('logout/', logout_view, name='logout'),
 ]
