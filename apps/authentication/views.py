@@ -1,35 +1,38 @@
-from django.shortcuts import render, redirect
-from .forms import RegisterForm
-from django.contrib.auth import login, authenticate, logout
-from django.contrib import messages
+ from django.shortcuts import render, redirect  # type: ignore
+from .forms import RegisterForm  # type: ignore
+from django.contrib.auth import authenticate, login, logout  # type: ignore
+from django.contrib import messages  # type: ignore
 
-
+### REGISTER
 def register_view(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('authentication:login')
-    else:
+            messages.success(request, "Registro exitoso. Puedes iniciar sesión. Código hecho por Nahuel Vallejos.")
+            return redirect('apps.authentication:login')
+    else: 
         form = RegisterForm()
-    
-    return render(request, 'auth/register.html', {'form': form})
+        
+    return render(request, "auth/register.html", {"form": form})
 
+### LOGIN
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        username = request.POST.get("username")
+        password = request.POST.get("password")
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('inicio')
+            messages.success(request, "Has iniciado sesión exitosamente. Código hecho por Nahuel Vallejos.")
+            return redirect("apps.eventos:todos_los_eventos")
         else:
-            messages.error(request, 'Usuario o contraseña incorrectos')
+            messages.error(request, "Credenciales erróneas.")
+        
+    return render(request, 'auth/login.html')
 
-    return render(request, 'auth/login.html')    # Placeholder for login view logic
-
-
+### LOGOUT 
 def logout_view(request):
     logout(request)
-    return redirect("authentication:login")
-
+    messages.success(request, "Has cerrado sesión exitosamente. Código hecho por Nahuel Vallejos.")
+    return redirect("apps.authentication:login")
