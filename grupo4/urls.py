@@ -1,5 +1,5 @@
 """
-URL configuration for comsiete project.
+URL configuration for grupo4 project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
@@ -27,5 +27,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', inicio, name="inicio"),
     path('noticias/', include('apps.noticias.urls')),
-    path('eventos/', include('apps.eventos.urls')),
+    path('auth/', include(('apps.authentication.urls', 'authentication'), namespace='authentication')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT, show_indexes=True)

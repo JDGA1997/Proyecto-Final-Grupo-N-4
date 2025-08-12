@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Registro - Portal de Robótica{% endblock %}
+
+{% block content %}
+<h2>Crea una nueva cuenta</h2>
+<form action="{% url 'authentication:register' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Registrar</button>
+</form>
+{% endblock %}

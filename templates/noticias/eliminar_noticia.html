@@ -1,22 +1,102 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOTICIAS | ELIMINAR</title>
-</head>
-<body>
-    <h1>¿Estás seguro de que queres eliminar esta noticia?</h1>
-    <hr>
-    <p>ID: <small>{{noticia.noticia_id}}</small></p>
-    <p>TITULO: <small>{{noticia.titulo}}</small></p>
-    <p>SUBTITULO: <small>{{noticia.subtitulo}}</small></p>
-    <p>CONTENIDO: <small>{{noticia.contenido}}</small></p>
-    <hr>
+{% extends 'base.html' %}
+{% load static %}
 
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Sí, eliminar</button>
-    </form>
-</body>
-</html>
+{% block title %}Eliminar Noticia - Portal Robótica{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="card border-danger">
+            <div class="card-header bg-danger text-white">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    Confirmar Eliminación
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-warning" role="alert">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <strong>¡Atención!</strong> Esta acción no se puede deshacer.
+                </div>
+                
+                <p class="lead">¿Estás seguro de que quieres eliminar esta noticia?</p>
+                
+                <!-- Vista previa de la noticia -->
+                <div class="card bg-light mb-4">
+                    <div class="card-body">
+                        {% if noticia.imagen_principal %}
+                            <img src="{{ noticia.imagen_principal.url }}" 
+                                 class="img-thumbnail float-start me-3 mb-2" 
+                                 style="max-width: 100px; max-height: 100px;" 
+                                 alt="{{ noticia.titulo }}">
+                        {% endif %}
+                        
+                        <h5 class="card-title text-danger">{{ noticia.titulo }}</h5>
+                        <p class="card-text text-muted">{{ noticia.subtitulo|truncatechars:100 }}</p>
+                        
+                        <div class="mt-3">
+                            <small class="text-muted d-block">
+                                <i class="fas fa-user me-1"></i><strong>Autor:</strong> {{ noticia.autor.nombre }}
+                            </small>
+                            <small class="text-muted d-block">
+                                <i class="fas fa-calendar me-1"></i><strong>Fecha:</strong> {{ noticia.fecha|date:"d/m/Y H:i" }}
+                            </small>
+                            <small class="text-muted d-block">
+                                <i class="fas fa-eye me-1"></i><strong>Visualizaciones:</strong> {{ noticia.visitas }}
+                            </small>
+                            {% if noticia.categorias.all %}
+                                <small class="text-muted d-block">
+                                    <i class="fas fa-tags me-1"></i><strong>Categorías:</strong>
+                                    {% for categoria in noticia.categorias.all %}
+                                        {{ categoria.nombre }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </small>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Información adicional -->
+                {% if noticia.comentarios.count > 0 %}
+                    <div class="alert alert-info">
+                        <i class="fas fa-comments me-2"></i>
+                        Esta noticia tiene <strong>{{ noticia.comentarios.count }} comentario{{ noticia.comentarios.count|pluralize }}</strong> que también será{{ noticia.comentarios.count|pluralize:"n" }} eliminado{{ noticia.comentarios.count|pluralize }}.
+                    </div>
+                {% endif %}
+                
+                <!-- Botones de acción -->
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="{% url 'una_noticia' noticia.noticia_id %}" class="btn btn-secondary">
+                        <i class="fas fa-times me-1"></i>Cancelar
+                    </a>
+                    
+                    <form method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash me-1"></i>Sí, Eliminar Noticia
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Enlaces de navegación -->
+        <div class="text-center mt-3">
+            <a href="{% url 'todas_las_noticias' %}" class="text-muted">
+                <i class="fas fa-arrow-left me-1"></i>Volver a todas las noticias
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Confirmación adicional antes de eliminar
+    document.querySelector('form').addEventListener('submit', function(e) {
+        if (!confirm('¿Estás completamente seguro? Esta acción no se puede deshacer.')) {
+            e.preventDefault();
+        }
+    });
+</script>
+{% endblock %}

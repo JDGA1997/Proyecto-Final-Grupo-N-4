@@ -1,12 +1,110 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAGINA PRINCIPAL</title>
-</head>
-<body>
-    <h1>PÁGINA DE INICIO</h1>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi animi aliquam maxime libero culpa minus fugiat consequatur voluptatibus amet magni, adipisci dignissimos ducimus dicta itaque illum ipsum aliquid voluptate atque.</p>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio - Portal de Robótica{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="hero-section rounded">
+            <div class="container text-center py-5">
+                <h1 class="display-4 hero-title mb-4">
+                    <i class="fas fa-robot me-3"></i>
+                    Portal de Noticias sobre Robótica
+                </h1>
+                <p class="hero-subtitle mb-4">Descubre las últimas innovaciones en robótica, automatización industrial y tecnología robótica del futuro</p>
+                <div class="mt-4">
+                    <a href="{% url 'todas_las_noticias' %}" class="btn btn-hero-primary btn-lg me-3">
+                        <i class="fas fa-newspaper me-2"></i>Ver Noticias
+                    </a>
+                    <a href="{% url 'crear_noticia' %}" class="btn btn-hero-secondary btn-lg">
+                        <i class="fas fa-plus me-2"></i>Crear Noticia
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sección de Características -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h2 class="section-title text-center">
+            <i class="fas fa-star me-2"></i>Nuestras Especialidades
+        </h2>
+    </div>
+</div>
+<div class="row mb-5 justify-content-center">
+    <div class="col-lg-4 col-md-6 col-sm-8 mb-4">
+        <div class="card card-feature h-100 text-center">
+            <div class="card-body">
+                <div class="text-tech mb-3">
+                    <i class="fas fa-robot fa-3x"></i>
+                </div>
+                <h5 class="card-title">Robótica Avanzada</h5>
+                <p class="card-text">Últimas noticias sobre robots inteligentes, sensores avanzados y sistemas de control robótico.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-8 mb-4">
+        <div class="card card-feature h-100 text-center">
+            <div class="card-body">
+                <div class="text-tech mb-3">
+                    <i class="fas fa-industry fa-3x"></i>
+                </div>
+                <h5 class="card-title">Robótica Industrial</h5>
+                <p class="card-text">Innovaciones en automatización, brazos robóticos industriales y tecnología de manufactura automatizada.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-8 mb-4">
+        <div class="card card-feature h-100 text-center">
+            <div class="card-body">
+                <div class="text-tech mb-3">
+                    <i class="fas fa-space-shuttle fa-3x"></i>
+                </div>
+                <h5 class="card-title">Robótica del Futuro</h5>
+                <p class="card-text">Tendencias emergentes en robótica, investigación robótica avanzada y el futuro de los robots.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Navegación Rápida -->
+<div class="row">
+    <div class="col-12">
+        <h2 class="section-title text-center mb-4">
+            <i class="fas fa-compass me-2"></i>Navegación Rápida
+        </h2>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-lg-5 col-md-6 col-sm-8 mb-4">
+        <div class="navigation-card rounded p-4">
+            <a href="{% url 'todas_las_noticias' %}" class="nav-link-custom text-decoration-none">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-newspaper fa-3x text-tech me-4"></i>
+                    <div>
+                        <h5 class="mb-2">Ver todas las noticias</h5>
+                        <p class="mb-0 text-muted">Explora nuestro archivo completo de noticias robóticas</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-5 col-md-6 col-sm-8 mb-4">
+        <div class="navigation-card rounded p-4">
+            <a href="{% url 'crear_noticia' %}" class="nav-link-custom text-decoration-none">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-plus-circle fa-3x text-tech me-4"></i>
+                    <div>
+                        <h5 class="mb-2">Crear nueva noticia</h5>
+                        <p class="mb-0 text-muted">Comparte las últimas noticias sobre robótica</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

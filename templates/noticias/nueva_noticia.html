@@ -1,16 +1,168 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOTICIAS | NUEVA</title>
-</head>
-<body>
-    <h1>NUEVA NOTICIA CREADA</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Crear</button>
-    </form>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Crear Nueva Noticia - Portal Robótica{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-plus-circle me-2 text-success"></i>
+                    Crear Nueva Noticia
+                </h3>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="titulo" class="form-label">
+                                    <i class="fas fa-heading me-1"></i>Título *
+                                </label>
+                                <input type="text" 
+                                       class="form-control" 
+                                       id="titulo" 
+                                       name="titulo" 
+                                       required 
+                                       maxlength="85"
+                                       placeholder="Título de la noticia">
+                                <div class="form-text">Máximo 85 caracteres</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="autor" class="form-label">
+                                    <i class="fas fa-user me-1"></i>Autor *
+                                </label>
+                                <select class="form-select" id="autor" name="autor" required>
+                                    <option value="">Seleccionar autor</option>
+                                    {% for autor in autores %}
+                                        <option value="{{ autor.autor_id }}">{{ autor.nombre }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="subtitulo" class="form-label">
+                            <i class="fas fa-text-width me-1"></i>Subtítulo *
+                        </label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="subtitulo" 
+                               name="subtitulo" 
+                               required 
+                               maxlength="150"
+                               placeholder="Subtítulo o breve descripción">
+                        <div class="form-text">Máximo 150 caracteres</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="contenido" class="form-label">
+                            <i class="fas fa-align-left me-1"></i>Contenido *
+                        </label>
+                        <textarea class="form-control" 
+                                  id="contenido" 
+                                  name="contenido" 
+                                  rows="8" 
+                                  required
+                                  placeholder="Escribe el contenido completo de la noticia..."></textarea>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="categorias" class="form-label">
+                                    <i class="fas fa-tags me-1"></i>Categorías
+                                </label>
+                                <select class="form-select" id="categorias" name="categorias" multiple>
+                                    {% for categoria in categorias %}
+                                        <option value="{{ categoria.categoria_id }}">
+                                            {{ categoria.nombre }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                                <div class="form-text">Mantén presionado Ctrl para seleccionar múltiples categorías</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="imagen_principal" class="form-label">
+                                    <i class="fas fa-image me-1"></i>Imagen Principal
+                                </label>
+                                <input type="file" 
+                                       class="form-control" 
+                                       id="imagen_principal" 
+                                       name="imagen_principal"
+                                       accept="image/*">
+                                <div class="form-text">Formatos soportados: JPG, PNG, GIF</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'todas_las_noticias' %}" class="btn btn-secondary">
+                            <i class="fas fa-times me-1"></i>Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-save me-1"></i>Crear Noticia
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Card de ayuda -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h6 class="mb-0">
+                    <i class="fas fa-lightbulb me-2"></i>Consejos para escribir una buena noticia
+                </h6>
+            </div>
+            <div class="card-body">
+                <ul class="mb-0">
+                    <li><strong>Título atractivo:</strong> Debe ser claro, conciso y captar la atención del lector.</li>
+                    <li><strong>Subtítulo informativo:</strong> Complementa el título con información adicional relevante.</li>
+                    <li><strong>Contenido estructurado:</strong> Organiza la información de manera lógica y fácil de leer.</li>
+                    <li><strong>Imagen de calidad:</strong> Una buena imagen hace que la noticia sea más atractiva visualmente.</li>
+                    <li><strong>Categorías apropiadas:</strong> Ayudan a los lectores a encontrar contenido relacionado.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Contador de caracteres para título y subtítulo
+    document.addEventListener('DOMContentLoaded', function() {
+        const titulo = document.getElementById('titulo');
+        const subtitulo = document.getElementById('subtitulo');
+        
+        function updateCounter(input, maxLength) {
+            const remaining = maxLength - input.value.length;
+            const helpText = input.nextElementSibling;
+            helpText.textContent = `${remaining} caracteres restantes`;
+            
+            if (remaining < 10) {
+                helpText.style.color = '#dc3545';
+            } else if (remaining < 20) {
+                helpText.style.color = '#fd7e14';
+            } else {
+                helpText.style.color = '#6c757d';
+            }
+        }
+        
+        titulo.addEventListener('input', () => updateCounter(titulo, 85));
+        subtitulo.addEventListener('input', () => updateCounter(subtitulo, 150));
+    });
+</script>
+{% endblock %}
