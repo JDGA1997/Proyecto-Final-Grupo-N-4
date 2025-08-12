@@ -1,7 +1,7 @@
- from django.shortcuts import render, redirect  # type: ignore
-from .forms import RegisterForm  # type: ignore
-from django.contrib.auth import authenticate, login, logout  # type: ignore
-from django.contrib import messages  # type: ignore
+from django.shortcuts import render, redirect
+from .forms import RegisterForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 ### REGISTER
 def register_view(request):
@@ -9,8 +9,8 @@ def register_view(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Registro exitoso. Puedes iniciar sesión. Código hecho por Nahuel Vallejos.")
-            return redirect('apps.authentication:login')
+            messages.success(request, "Registro exitoso. Puedes iniciar sesión.")
+            return redirect('authentication:login')
     else: 
         form = RegisterForm()
         
@@ -24,8 +24,8 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, "Has iniciado sesión exitosamente. Código hecho por Nahuel Vallejos.")
-            return redirect("apps.eventos:todos_los_eventos")
+            messages.success(request, "Has iniciado sesión exitosamente.")
+            return redirect("inicio")
         else:
             messages.error(request, "Credenciales erróneas.")
         
@@ -34,5 +34,5 @@ def login_view(request):
 ### LOGOUT 
 def logout_view(request):
     logout(request)
-    messages.success(request, "Has cerrado sesión exitosamente. Código hecho por Nahuel Vallejos.")
-    return redirect("apps.authentication:login")
+    messages.success(request, "Has cerrado sesión exitosamente.")
+    return redirect("authentication:login")
