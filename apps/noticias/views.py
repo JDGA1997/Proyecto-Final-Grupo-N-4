@@ -211,10 +211,10 @@ def acerca_de(request):
                 'github': 'Valen-cbs'
             },
                         {
-                'nombre': 'Integrante3',
+                'nombre': 'Nahuel Vallejos',
                 'rol': '',
                 'descripcion': '',
-                'github': ''
+                'github': 'Nahuel151'
             },
             {
                 'nombre': 'Integrante4',
