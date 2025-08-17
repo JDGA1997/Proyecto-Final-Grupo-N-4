@@ -11,6 +11,6 @@ ALLOWED_HOSTS = ['grupo4informatorio.pythonanywhere.com']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(os.path.dirname(BASE_DIR), 'db_production.db'),
+        'NAME': os.path.join(os.path.dirname(BASE_DIR), 'db_local.db'),
     }
 }
