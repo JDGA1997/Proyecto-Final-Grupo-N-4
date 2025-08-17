@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ titulo }} - Portal Robótica{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <h2><i class="fas fa-shield-alt me-2"></i>{{ titulo }}</h2>
+                <p class="mb-0">{{ descripcion }}</p>
+                {% if nivel_acceso %}
+                    <span class="badge bg-success mt-2">Nivel de acceso: {{ nivel_acceso }}</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    {% if user.is_authenticated %}
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Información del Usuario</h5>
+                        <p><strong>Usuario:</strong> {{ user.username }}</p>
+                        <p><strong>Email:</strong> {{ user.email }}</p>
+                        <p><strong>Tipo de Perfil:</strong> 
+                            <span class="badge bg-primary">{{ user.get_tipo_perfil_display }}</span>
+                        </p>
+                        <p><strong>Permisos de acceso:</strong></p>
+                        <ul>
+                            <li><i class="fas fa-check text-success"></i> Noticias públicas</li>
+                            {% if user.tipo_perfil == 'miembro' or user.tipo_perfil == 'colaborador' %}
+                                <li><i class="fas fa-check text-success"></i> Zona de miembros</li>
+                            {% else %}
+                                <li><i class="fas fa-times text-danger"></i> Zona de miembros</li>
+                            {% endif %}
+                            
+                            {% if user.tipo_perfil == 'colaborador' %}
+                                <li><i class="fas fa-check text-success"></i> Panel de colaboradores</li>
+                                <li><i class="fas fa-check text-success"></i> Crear/editar noticias</li>
+                            {% else %}
+                                <li><i class="fas fa-times text-danger"></i> Panel de colaboradores</li>
+                                <li><i class="fas fa-times text-danger"></i> Crear/editar noticias</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if noticias %}
+        <div class="row">
+            <div class="col-12">
+                <h4>Últimas Noticias</h4>
+            </div>
+        </div>
+        <div class="row">
+            {% for noticia in noticias %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        {% if noticia.imagen_principal %}
+                            <img src="{{ noticia.imagen_principal.url }}" class="card-img-top" alt="{{ noticia.titulo }}" style="height: 200px; object-fit: cover;">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ noticia.titulo }}</h5>
+                            <p class="card-text">{{ noticia.subtitulo }}</p>
+                            <p class="card-text">
+                                <small class="text-muted">{{ noticia.fecha|date:"d/m/Y" }}</small>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'una_noticia' noticia.noticia_id %}" class="btn btn-primary btn-sm">Leer más</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <h4>Enlaces Rápidos</h4>
+            <div class="list-group">
+                <a href="{% url 'noticias_publicas' %}" class="list-group-item list-group-item-action">
+                    <i class="fas fa-globe me-2"></i>Noticias Públicas
+                    <span class="badge bg-success ms-2">Todos los usuarios</span>
+                </a>
+                
+                {% if user.tipo_perfil == 'miembro' or user.tipo_perfil == 'colaborador' %}
+                    <a href="{% url 'noticias_miembros' %}" class="list-group-item list-group-item-action">
+                        <i class="fas fa-users me-2"></i>Zona de Miembros
+                        <span class="badge bg-warning ms-2">Miembros y Colaboradores</span>
+                    </a>
+                {% else %}
+                    <span class="list-group-item list-group-item-action disabled">
+                        <i class="fas fa-users me-2"></i>Zona de Miembros
+                        <span class="badge bg-secondary ms-2">Requiere nivel Miembro</span>
+                    </span>
+                {% endif %}
+                
+                {% if user.tipo_perfil == 'colaborador' %}
+                    <a href="{% url 'noticias_colaboradores' %}" class="list-group-item list-group-item-action">
+                        <i class="fas fa-star me-2"></i>Panel de Colaboradores
+                        <span class="badge bg-danger ms-2">Solo Colaboradores</span>
+                    </a>
+                {% else %}
+                    <span class="list-group-item list-group-item-action disabled">
+                        <i class="fas fa-star me-2"></i>Panel de Colaboradores
+                        <span class="badge bg-secondary ms-2">Requiere nivel Colaborador</span>
+                    </span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
