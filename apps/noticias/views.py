@@ -4,9 +4,13 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
 from .models import Noticia, Autor, Categoria, Comentario
+from apps.authentication.decorators import perfil_requerido
+from apps.authentication.models import User
 
 
 # VISTA BASADA EN FUNCIONES (FBV) - LISTAR TODAS LAS NOTICIAS
+# Accesible para todos los tipos de usuarios
+@perfil_requerido(User.VISITANTE, User.MIEMBRO, User.COLABORADOR)
 def todas_las_noticias(request):
     categoria_param = request.GET.get("categoria", "").strip()
     busqueda = request.GET.get("busqueda", "").strip()
@@ -61,6 +65,8 @@ def todas_las_noticias(request):
 
 
 # VISTA BASADA EN FUNCIONES (FBV) - DETALLE DE UNA NOTICIA
+# Accesible para todos los tipos de usuarios
+@perfil_requerido(User.VISITANTE, User.MIEMBRO, User.COLABORADOR)
 def una_noticia(request, noticia_id):
     noticia = get_object_or_404(Noticia, noticia_id=noticia_id, activa=True)
     
@@ -97,7 +103,8 @@ def una_noticia(request, noticia_id):
 
 
 # VISTA BASADA EN FUNCIONES (FBV) - CREAR NUEVA NOTICIA
-@login_required
+# Solo colaboradores pueden crear noticias
+@perfil_requerido(User.COLABORADOR)
 def crear_noticia(request):
     if request.method == "POST":
         titulo = request.POST.get('titulo')
@@ -142,7 +149,8 @@ def crear_noticia(request):
 
 
 # VISTA BASADA EN FUNCIONES (FBV) - ACTUALIZAR NOTICIA
-@login_required
+# Solo colaboradores pueden actualizar noticias
+@perfil_requerido(User.COLABORADOR)
 def actualizar_noticia(request, noticia_id):
     noticia = get_object_or_404(Noticia, noticia_id=noticia_id)
     
@@ -181,7 +189,8 @@ def actualizar_noticia(request, noticia_id):
 
 
 # VISTA BASADA EN FUNCIONES (FBV) - ELIMINAR NOTICIA
-@login_required
+# Solo colaboradores pueden eliminar noticias
+@perfil_requerido(User.COLABORADOR)
 def eliminar_noticia(request, noticia_id):
     noticia = get_object_or_404(Noticia, noticia_id=noticia_id)
 
@@ -259,4 +268,35 @@ def contacto(request):
         return redirect('contacto')
     
     return render(request, 'contacto.html')
-    return render(request, "noticias/eliminar_noticia.html", context)
+
+# VISTAS ESPECÍFICAS POR TIPO DE USUARIO
+@perfil_requerido(User.VISITANTE, User.MIEMBRO, User.COLABORADOR)
+def noticias_publicas(request):
+    """Vista accesible para todos los usuarios autenticados"""
+    noticias = Noticia.objects.filter(activa=True)[:5]  # Últimas 5 noticias
+    context = {
+        'noticias': noticias,
+        'titulo': 'Noticias Públicas',
+        'descripcion': 'Contenido disponible para todos los usuarios registrados'
+    }
+    return render(request, 'noticias/seccion_especial.html', context)
+
+@perfil_requerido(User.MIEMBRO, User.COLABORADOR)
+def noticias_miembros(request):
+    """Vista solo para miembros y colaboradores"""
+    context = {
+        'titulo': 'Zona Exclusiva para Miembros',
+        'descripcion': 'Este contenido está disponible solo para miembros y colaboradores del portal.',
+        'nivel_acceso': 'Miembro+'
+    }
+    return render(request, 'noticias/seccion_especial.html', context)
+
+@perfil_requerido(User.COLABORADOR)
+def noticias_colaboradores(request):
+    """Vista solo para colaboradores"""
+    context = {
+        'titulo': 'Panel de Colaboradores',
+        'descripcion': 'Área exclusiva para colaboradores. Aquí puedes gestionar contenido y acceder a herramientas avanzadas.',
+        'nivel_acceso': 'Colaborador'
+    }
+    return render(request, 'noticias/seccion_especial.html', context)

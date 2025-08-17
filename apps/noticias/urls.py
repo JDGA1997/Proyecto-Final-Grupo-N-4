@@ -6,7 +6,10 @@ from .views import (
     actualizar_noticia,
     eliminar_noticia,
     acerca_de,
-    contacto
+    contacto,
+    noticias_publicas,
+    noticias_miembros,
+    noticias_colaboradores
 )
 
 #http://127.0.0.1:8000/noticias/
@@ -26,4 +29,9 @@ urlpatterns = [
     # Páginas adicionales
     path('acerca-de/', acerca_de, name='acerca_de'),
     path('contacto/', contacto, name='contacto'),
+    
+    # Rutas específicas por permisos
+    path('publicas/', noticias_publicas, name='noticias_publicas'),
+    path('miembros/', noticias_miembros, name='noticias_miembros'),
+    path('colaboradores/', noticias_colaboradores, name='noticias_colaboradores'),
 ]

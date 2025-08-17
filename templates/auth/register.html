@@ -4,10 +4,81 @@
 {% block title %}Registro - Portal de Robótica{% endblock %}
 
 {% block content %}
-<h2>Crea una nueva cuenta</h2>
-<form action="{% url 'authentication:register' %}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Registrar</button>
-</form>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Crea una nueva cuenta</h2>
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <form action="{% url 'authentication:register' %}" method="post">
+                        {% csrf_token %}
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.username.id_for_label }}" class="form-label">Usuario</label>
+                            {{ form.username }}
+                            {% if form.username.errors %}
+                                <div class="text-danger">{{ form.username.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+                            {{ form.email }}
+                            {% if form.email.errors %}
+                                <div class="text-danger">{{ form.email.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.tipo_perfil.id_for_label }}" class="form-label">Tipo de Perfil</label>
+                            {{ form.tipo_perfil }}
+                            <div class="form-text">
+                                <small>
+                                    <strong>Visitante:</strong> Puede ver noticias públicas<br>
+                                    <strong>Miembro:</strong> Acceso a contenido para miembros<br>
+                                    <strong>Colaborador:</strong> Puede crear y gestionar noticias
+                                </small>
+                            </div>
+                            {% if form.tipo_perfil.errors %}
+                                <div class="text-danger">{{ form.tipo_perfil.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.password1.id_for_label }}" class="form-label">Contraseña</label>
+                            {{ form.password1 }}
+                            {% if form.password1.errors %}
+                                <div class="text-danger">{{ form.password1.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.password2.id_for_label }}" class="form-label">Confirmar Contraseña</label>
+                            {{ form.password2 }}
+                            {% if form.password2.errors %}
+                                <div class="text-danger">{{ form.password2.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100">Registrar</button>
+                    </form>
+                    
+                    <div class="text-center mt-3">
+                        <p>¿Ya tienes una cuenta? <a href="{% url 'authentication:login' %}">Inicia sesión aquí</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

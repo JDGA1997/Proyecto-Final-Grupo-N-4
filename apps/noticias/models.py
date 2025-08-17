@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 
 class Categoria(models.Model):
     categoria_id = models.AutoField(primary_key=True)
@@ -65,7 +65,7 @@ class ImagenNoticia(models.Model):
 
 class Comentario(models.Model):
     noticia = models.ForeignKey(Noticia, on_delete=models.CASCADE, related_name='comentarios')
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     contenido = models.TextField()
     fecha = models.DateTimeField(auto_now_add=True)
     activo = models.BooleanField(default=True)

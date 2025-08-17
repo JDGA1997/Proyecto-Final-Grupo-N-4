@@ -9,7 +9,7 @@
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5.1.3-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
 [![Pillow](https://img.shields.io/badge/Pillow-11.3.0-4285F4?style=for-the-badge&logo=python&logoColor=white)](https://pillow.readthedocs.io/)
 [![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
-![Estado](https://img.shields.io/badge/Estado-En%20Desarrollo-orange?style=for-the-badge)
+![Estado](https://img.shields.io/badge/Estado-Completado-green?style=for-the-badge)
 
 *Portal moderno de noticias especializadas en robótica, automatización industrial y tecnología robótica del futuro*
 
@@ -20,14 +20,13 @@
 ## 📋 Tabla de Contenidos
 
 - [🚀 Descripción General](#-descripción-general)
-- [✨ Nuevas Funcionalidades Implementadas](#-nuevas-funcionalidades-implementadas)
 - [🛠️ Stack Tecnológico](#️-stack-tecnológico)
 - [📁 Estructura del Proyecto](#-estructura-del-proyecto)
 - [⚙️ Instalación y Configuración](#️-instalación-y-configuración)
 - [🎯 Funcionalidades Principales](#-funcionalidades-principales)
+- [👤 Perfiles de Usuario y Credenciales](#-perfiles-de-usuario-y-credenciales)
 - [🌐 Navegación y Páginas](#-navegación-y-páginas)
 - [📱 Diseño Responsive](#-diseño-responsive)
-- [🔧 Configuración Adicional](#-configuración-adicional)
 - [👥 Equipo](#-equipo)
 
 ---
@@ -42,8 +41,8 @@ El **Portal de Noticias sobre Robótica** es una aplicación web moderna desarro
 |:---------------|:------------|:------:|
 | **🎨 UI Moderna** | Interfaz Bootstrap 5 con efectos visuales | ✅ |
 | **📱 Responsive** | Adaptable a móviles, tablets y desktop | ✅ |
-| **🔐 Autenticación** | Sistema de usuarios integrado | 🚧 |
-| **🔑 Perfiles de Usuario** | Visitante, Miembro, Colaborador | 🚧 |
+| **🔐 Autenticación** | Sistema de usuarios completo | ✅ |
+| **🔑 Perfiles de Usuario** | Visitante, Miembro, Colaborador | ✅ |
 | **📸 Multimedia** | Soporte completo para imágenes | ✅ |
 | **🔍 Búsqueda Avanzada** | Filtrado inteligente y ordenamiento | ✅ |
 | **💬 Comentarios** | Sistema completo de comentarios | ✅ |
@@ -51,117 +50,6 @@ El **Portal de Noticias sobre Robótica** es una aplicación web moderna desarro
 | **🏷️ Ordenamiento** | Por fecha y alfabético (ASC/DESC) | ✅ |
 | **⚡ Performance** | Optimizado para velocidad | ✅ |
 | **🛡️ Seguridad** | CSRF protection y validaciones | ✅ |
-
----
-
-## ✨ Nuevas Funcionalidades Implementadas
-
-### � **Sistema de Autenticación Implementado**
-- ✅ **App de autenticación**: Nueva aplicación `apps.authentication` creada
-- ✅ **Registro de usuarios**: Formulario funcional con validaciones
-- ✅ **Login/Logout**: Sistema básico de inicio y cierre de sesión
-- ✅ **Templates de autenticación**: Páginas de login y registro responsivas
-- 🚧 **Modelo de Perfil**: En desarrollo - tipos de usuario (Visitante, Miembro, Colaborador)
-- 🚧 **Control de permisos**: Pendiente implementación de restricciones por perfil
-- 🚧 **Navbar dinámico**: Pendiente actualización según estado de autenticación
-
-### 💻 **Arquitectura Modular Mejorada**
-- ✅ **Apps separadas**: `noticias` y `authentication` con responsabilidades claras
-- ✅ **Settings modulares**: Configuraciones por ambiente (base, local, production)
-- ✅ **URLs organizadas**: Sistema de namespaces para mejor organización
-- ✅ **Migraciones actualizadas**: Base de datos sincronizada con nuevos modelos
-
-### �🔍 **Sistema de Ordenamiento Avanzado**
-- ✅ **Ordenamiento por fecha**: Ascendente (más antiguos primero) y Descendente (más recientes primero)
-- ✅ **Ordenamiento alfabético**: Ascendente (A-Z) y Descendente (Z-A)
-- ✅ **Interfaz intuitiva**: Dropdown con opciones claras para el usuario
-- ✅ **Persistencia de filtros**: Los filtros se mantienen al navegar entre páginas
-- ✅ **Combinación de filtros**: Ordenamiento + búsqueda + categoría simultáneamente
-
-### 📄 **Página de Detalle de Noticia** (`una_noticia.html`)
-- ✅ **Vista completa del artículo** con imagen destacada y contenido completo
-- ✅ **Información del autor** con foto de perfil y biografía
-- ✅ **Metadatos de la noticia** (fecha, categorías, número de visitas)
-- ✅ **Sistema de comentarios** integrado con formulario de envío
-- ✅ **Botones de compartir** en redes sociales (Facebook, Twitter, LinkedIn)
-- ✅ **Sidebar con noticias relacionadas** para aumentar engagement
-- ✅ **Navegación mejorada** con enlaces de regreso y acciones rápidas
-
-### 🏢 **Página "Acerca de"**
-- ✅ **Información completa del blog** con misión y visión del proyecto
-- ✅ **Perfiles del equipo** con fotografías y roles de cada miembro
-- ✅ **Descripción del proyecto académico** con contexto del Informatorio
-- ✅ **Stack tecnológico visual** con badges y descripciones
-- ✅ **Hero section moderna** con gradiente y tipografía profesional
-- ✅ **Cards responsivas** para cada miembro del equipo
-
-### 📧 **Página "Contacto"**
-- ✅ **Formulario de contacto completo** con validación frontend y backend
-- ✅ **Múltiples opciones de asunto** (General, Soporte Técnico, Colaboración, etc.)
-- ✅ **Información de contacto** con direcciones y datos del equipo
-- ✅ **Sección de FAQ** con preguntas frecuentes en formato accordion
-- ✅ **Sistema de mensajes** para confirmación de envío exitoso
-- ✅ **Diseño profesional** manteniendo la identidad visual del proyecto
-
-### 🧭 **Navegación Mejorada**
-- ✅ **Navbar actualizada** con enlaces a todas las nuevas páginas
-- ✅ **Footer enriquecido** con enlaces rápidos y información del proyecto
-- ✅ **Iconografía consistente** usando Font Awesome en toda la interfaz
-- ✅ **Enlaces GitHub** para acceso directo al repositorio del proyecto
-- ✅ **Breadcrumbs implícitos** en la estructura de navegación
-
-### 🎨 **Mejoras de UI/UX**
-- ✅ **Diseño coherente** en todas las páginas siguiendo el mismo patrón visual
-- ✅ **Responsive design** optimizado para móviles, tablets y desktop
-- ✅ **Paleta de colores robótica** con azules, grises y acentos tecnológicos
-- ✅ **Efectos hover** y transiciones suaves en botones y cards
-- ✅ **Typography mejorada** con jerarquía clara y legibilidad optimizada
-
-### 🎨 **Interfaz Moderna con Bootstrap 5**
-- ✅ **Template base responsivo** con navegación profesional
-- ✅ **Cards interactivas** con efectos hover y animaciones suaves
-- ✅ **Sistema de iconos** completo con Font Awesome 6.0.0
-- ✅ **Diseño centrado** en la experiencia del usuario (UX/UI)
-- ✅ **Paleta de colores** temática profesional de robótica
-- ✅ **Gradientes modernos** y efectos visuales atractivos
-
-### 📸 **Sistema de Imágenes Avanzado**
-- ✅ **Imágenes principales** para noticias con redimensionado automático
-- ✅ **Galería de imágenes** adicionales por noticia
-- ✅ **Imágenes de perfil** para autores con biografías
-- ✅ **Manejo automático** de archivos con Pillow
-- ✅ **Imágenes predeterminadas** cuando no se cargan
-- ✅ **Optimización** de tamaños y formatos
-
-### 💬 **Sistema de Comentarios Completo**
-- ✅ **Comentarios vinculados** a noticias específicas
-- ✅ **Moderación de comentarios** (activo/inactivo)
-- ✅ **Interfaz elegante** para mostrar comentarios
-- ✅ **Contador de comentarios** por noticia
-- ✅ **Validación de datos** y sanitización
-- ✅ **Timestamps** automáticos
-
-### 🔍 **Búsqueda y Filtrado Avanzado**
-- ✅ **Búsqueda por texto** en título, subtítulo y contenido
-- ✅ **Filtrado por categorías** con dropdown interactivo
-- ✅ **Ordenamiento múltiple**: Por fecha (ASC/DESC) y alfabético (A-Z/Z-A)
-- ✅ **Paginación avanzada** (6 noticias por página) con conservación de filtros
-- ✅ **Indicadores visuales** de filtros activos con resumen inteligente
-- ✅ **Función para limpiar** filtros rápidamente
-- ✅ **URLs amigables** para SEO y compartir resultados
-- ✅ **Interfaz intuitiva** con formularios bien organizados
-
-### 📊 **Métricas y Analytics**
-- ✅ **Contador de visualizaciones** por noticia
-- ✅ **Fecha de creación** y actualización automática
-- ✅ **Estado de publicación** (activa/inactiva)
-- ✅ **Metadatos enriquecidos** para mejor organización
-- ✅ **Estadísticas de contenido** en tiempo real
-
-### 🎯 **Especialización en Robótica**
-- ✅ **Robótica Avanzada**: Robots inteligentes y sistemas de control
-- ✅ **Robótica Industrial**: Automatización y manufactura
-- ✅ **Robótica del Futuro**: Tendencias e investigación avanzada
 
 ---
 
@@ -196,8 +84,8 @@ Proyecto-Final-Grupo-N-4/
 │   │   ├── 📄 admin.py           # Panel admin personalizado
 │   │   ├── 📄 urls.py            # URLs organizadas
 │   │   └── 📁 migrations/        # Migraciones de base de datos
-│   └── 📁 authentication/        # ✨ NUEVA: App de autenticación
-│       ├── 📄 models.py          # 🚧 Modelos de perfil (en desarrollo)
+│   └── 📁 authentication/        # App de autenticación
+│       ├── 📄 models.py          # Modelos de perfil de usuario
 │       ├── 📄 views.py           # Vistas de login/registro
 │       ├── 📄 forms.py           # Formularios de autenticación
 │       ├── 📄 urls.py            # URLs de auth (/auth/)
@@ -212,14 +100,14 @@ Proyecto-Final-Grupo-N-4/
 ├── 📁 templates/                 # Templates limpios y optimizados
 │   ├── 📄 base.html              # Template base responsivo
 │   ├── 📄 index.html             # Página de inicio moderna
-│   ├── 📄 acerca_de.html         # ✨ NUEVA: Página sobre el equipo
-│   ├── 📄 contacto.html          # ✨ NUEVA: Página de contacto
-│   ├── 📁 auth/                  # ✨ NUEVA: Templates de autenticación
+│   ├── 📄 acerca_de.html         # Página sobre el equipo
+│   ├── 📄 contacto.html          # Página de contacto
+│   ├── 📁 auth/                  # Templates de autenticación
 │   │   ├── 📄 login.html         # Página de inicio de sesión
 │   │   └── 📄 register.html      # Página de registro
 │   └── 📁 noticias/              # Templates de noticias
-│       ├── 📄 todas_noticias.html   # ✨ MEJORADA: Con filtros avanzados
-│       ├── 📄 una_noticia.html      # ✨ NUEVA: Detalle completo
+│       ├── 📄 todas_noticias.html   # Con filtros avanzados
+│       ├── 📄 una_noticia.html      # Detalle completo
 │       ├── 📄 nueva_noticia.html
 │       ├── 📄 actualizar_noticia.html
 │       └── 📄 eliminar_noticia.html
@@ -250,44 +138,47 @@ cd Proyecto-Final-Grupo-N-4
 
 ### **3. Crear Entorno Virtual**
 ```bash
-# Windows
 python -m venv .venv
+```
+
+### **4. Activar Entorno Virtual**
+```bash
+# Windows
 .venv\Scripts\activate
 
-# Linux/Mac
-python3 -m venv .venv
+# macOS/Linux
 source .venv/bin/activate
 ```
 
-### **4. Instalar Dependencias**
+### **5. Instalar Dependencias**
 ```bash
 pip install -r requirements.txt
 ```
 
-### **5. Configurar Base de Datos**
+### **6. Configurar Base de Datos**
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-### **6. Crear Superusuario (Opcional)**
+### **7. Crear Superusuario (Opcional)**
 ```bash
 python manage.py createsuperuser
 ```
 
-### **7. Ejecutar Servidor de Desarrollo**
+### **8. Ejecutar Servidor de Desarrollo**
 ```bash
 python manage.py runserver
 ```
 
-### **8. Acceder a la Aplicación**
+### **9. Acceder a la Aplicación**
 - **Portal Principal**: http://127.0.0.1:8000/
 - **Lista de Noticias**: http://127.0.0.1:8000/noticias/
-- **🆕 Login**: http://127.0.0.1:8000/auth/login/
-- **🆕 Registro**: http://127.0.0.1:8000/auth/register/
-- **🆕 Logout**: http://127.0.0.1:8000/auth/logout/
-- **🆕 Acerca de**: http://127.0.0.1:8000/noticias/acerca-de/
-- **🆕 Contacto**: http://127.0.0.1:8000/noticias/contacto/
+- **Login**: http://127.0.0.1:8000/auth/login/
+- **Registro**: http://127.0.0.1:8000/auth/register/
+- **Logout**: http://127.0.0.1:8000/auth/logout/
+- **Acerca de**: http://127.0.0.1:8000/noticias/acerca-de/
+- **Contacto**: http://127.0.0.1:8000/noticias/contacto/
 - **Panel de Administración**: http://127.0.0.1:8000/admin/
 
 ---
@@ -305,12 +196,12 @@ python manage.py runserver
 - **Editor de contenido** con validación de campos
 - **Categorización** por temas específicos de robótica
 - **Sistema de imágenes** integrado con galería
-- **🆕 Vista de detalle completa** con comentarios y compartir
+- **Vista de detalle completa** con comentarios y compartir
 
 ### **🔍 Búsqueda y Filtrado Inteligente**
 - **Búsqueda por texto** en título, subtítulo y contenido
 - **Filtrado por categoría** con menú desplegable
-- **🆕 Ordenamiento avanzado**: Por fecha (ASC/DESC) y alfabético (A-Z/Z-A)
+- **Ordenamiento avanzado**: Por fecha (ASC/DESC) y alfabético (A-Z/Z-A)
 - **Paginación inteligente** de resultados con preservación de filtros
 - **URLs amigables** optimizadas para SEO
 
@@ -318,166 +209,157 @@ python manage.py runserver
 - **Registro de usuarios**: Formulario completo con validaciones Django
 - **Login/Logout**: Sistema funcional implementado con redirecciones correctas
 - **Estructura modular**: App independiente para escalabilidad
-- **🚧 Perfiles de usuario**: En desarrollo - tipos Visitante, Miembro, Colaborador
-- **🚧 Control de permisos**: Pendiente implementación por tipo de perfil
+- **Perfiles de usuario**: Tres tipos implementados (Visitante, Miembro, Colaborador)
+- **Control de permisos**: Restricciones implementadas por tipo de perfil
 - **Templates responsivos**: Páginas de autenticación integradas al diseño
+
+### **💬 Sistema de Comentarios**
 - **Comentarios por noticia** con sistema de moderación
 - **Interfaz intuitiva** para usuarios
 - **Validación robusta** de datos de entrada
 - **Timestamps automáticos** para seguimiento
 
-### **� Páginas Institucionales**
+### **📄 Páginas Institucionales**
 - **Página "Acerca de"**: Información completa del equipo y proyecto
 - **Página "Contacto"**: Formulario profesional con validación
 - **FAQ integrado** con preguntas frecuentes
-- **Información del equipo** con perfiles individuales
 
-### **�🎨 Panel de Administración**
-- **Interfaz personalizada** del admin de Django
-- **Gestión inline** de imágenes y comentarios
-- **Filtros avanzados** en los listados
+---
+
+## 👤 Perfiles de Usuario y Credenciales
+
+### **🔑 Tipos de Perfiles Disponibles**
+
+#### **👀 Visitante**
+- **Permisos**: Solo lectura de noticias públicas
+- **Acceso**: Navegación por todas las páginas sin autenticación
+- **Funcionalidades**: Ver noticias, usar filtros, acceder a páginas institucionales
+
+#### **👤 Miembro**
+- **Permisos**: Lectura completa + comentarios
+- **Registro**: Cualquier usuario puede registrarse como Miembro
+- **Funcionalidades adicionales**: 
+  - Comentar en noticias
+  - Acceso a secciones exclusivas para miembros
+  - Perfil personalizado
+
+#### **✍️ Colaborador**
+- **Permisos**: Gestión completa de contenido
+- **Funcionalidades administrativas**:
+  - Crear, editar y eliminar noticias
+  - Moderar comentarios
+  - Gestionar categorías y autores
+  - Acceso a herramientas avanzadas
+
+### **🎫 Credenciales de Prueba**
+
+#### **Administrador del Sistema**
+```
+Usuario: admin
+Contraseña: admin123
+Tipo: Superusuario
+URL: http://127.0.0.1:8000/admin/
+```
+
+#### **Usuario Colaborador**
+```
+Usuario: colaborador1
+Contraseña: test123456
+Tipo: Colaborador
+Funciones: Gestión completa de noticias
+```
+
+#### **Usuario Miembro**
+```
+Usuario: miembro1
+Contraseña: test123456
+Tipo: Miembro
+Funciones: Comentarios y lectura
+```
+
+#### **Usuario Visitante**
+```
+Usuario: visitante1
+Contraseña: test123456
+Tipo: Visitante
+Funciones: Solo lectura
+```
+
+### **🔧 Crear Nuevos Usuarios**
+
+Para crear usuarios adicionales, puedes:
+
+1. **Registro público**: Usar el formulario en `/auth/register/`
+2. **Panel admin**: Acceder como administrador a `/admin/`
+3. **Comando terminal**:
+```bash
+python manage.py createsuperuser
+```
+
+### **🛡️ Sistema de Permisos**
+
+| Acción | Visitante | Miembro | Colaborador |
+|:-------|:---------:|:-------:|:-----------:|
+| Ver noticias | ✅ | ✅ | ✅ |
+| Usar filtros | ✅ | ✅ | ✅ |
+| Comentar | ❌ | ✅ | ✅ |
+| Crear noticias | ❌ | ❌ | ✅ |
+| Editar noticias | ❌ | ❌ | ✅ |
+| Eliminar noticias | ❌ | ❌ | ✅ |
+| Moderar comentarios | ❌ | ❌ | ✅ |
+| Acceso admin | ❌ | ❌ | Parcial |
 
 ---
 
 ## 🌐 Navegación y Páginas
 
-### **Rutas Principales Disponibles**
+### **📱 Navbar Dinámico**
+- **Usuario no autenticado**: Enlaces a Login y Registro
+- **Usuario autenticado**: Muestra nombre de usuario, tipo de perfil y opciones de logout
+- **Responsive**: Colapsa en móviles con hamburger menu
+- **Indicadores visuales**: Badge con tipo de perfil actual
 
-| Ruta | Descripción | Funcionalidad |
-|:-----|:------------|:--------------|
-| `/` | Página de inicio | Hero section y navegación rápida |
-| `/noticias/` | Lista de noticias | Búsqueda, filtros y ordenamiento |
-| `/noticias/<id>/` | 🆕 Detalle de noticia | Vista completa con comentarios |
-| `/noticias/crear/` | Crear noticia | Formulario de creación (autenticado) |
-| `/noticias/actualizar/<id>/` | Editar noticia | Formulario de edición (autenticado) |
-| `/noticias/eliminar/<id>/` | Eliminar noticia | Confirmación de eliminación |
-| `/noticias/acerca-de/` | 🆕 Acerca de | Información del equipo y proyecto |
-| `/noticias/contacto/` | 🆕 Contacto | Formulario de contacto y FAQ |
-| `/auth/login/` | 🆕 Iniciar sesión | Login de usuarios registrados |
-| `/auth/register/` | 🆕 Registro | Crear nueva cuenta de usuario |
-| `/auth/logout/` | 🆕 Cerrar sesión | Logout y redirección |
-| `/admin/` | Panel administrativo | Gestión completa del contenido |
-
-### **🆕 Características de Navegación**
-- **Navbar responsiva** con colapso en móviles
-- **Enlaces activos** con indicadores visuales
-- **Breadcrumbs implícitos** en la estructura
-- **Footer enriquecido** con enlaces rápidos
-- **Iconografía consistente** en toda la interfaz
+### **🗺️ Mapa del Sitio**
+```
+Inicio (/)
+├── Noticias (/noticias/)
+│   ├── Detalle de noticia (/noticias/<id>/)
+│   ├── Nueva noticia (/noticias/crear/) [Solo Colaboradores]
+│   ├── Editar noticia (/noticias/actualizar/<id>/) [Solo Colaboradores]
+│   └── Eliminar noticia (/noticias/eliminar/<id>/) [Solo Colaboradores]
+├── Autenticación (/auth/)
+│   ├── Login (/auth/login/)
+│   ├── Registro (/auth/register/)
+│   └── Logout (/auth/logout/)
+├── Acerca de (/noticias/acerca-de/)
+├── Contacto (/noticias/contacto/)
+└── Administración (/admin/) [Solo Administradores]
+```
 
 ---
 
 ## 📱 Diseño Responsive
 
-### **Breakpoints y Adaptaciones**
+### **🎨 Características del Diseño**
+- **Mobile First**: Optimizado primero para dispositivos móviles
+- **Bootstrap 5**: Framework responsive con grid system
+- **Breakpoints**: sm (576px), md (768px), lg (992px), xl (1200px)
+- **Typography**: Escala responsiva con Google Fonts (Roboto)
+- **Imágenes**: Redimensionado automático con clases responsive
 
-| Dispositivo | Resolución | Características |
-|:------------|:-----------|:----------------|
-| **📱 Móvil** | < 576px | Navegación colapsable, cards apiladas |
-| **📟 Tablet** | 576px - 992px | Layout de 2 columnas, menú adaptativo |
-| **💻 Desktop** | > 992px | Layout completo de 3 columnas |
-| **🖥️ Wide Screen** | > 1200px | Máximo aprovechamiento del espacio |
+### **📺 Compatibilidad de Dispositivos**
+- **📱 Móviles**: 320px - 767px
+- **📟 Tablets**: 768px - 991px  
+- **💻 Desktop**: 992px - 1199px
+- **🖥️ Large Desktop**: 1200px+
 
-### **Optimizaciones Móviles**
-- **Navegación touch-friendly** con botones grandes
-- **Imágenes optimizadas** para diferentes densidades
-- **Texto legible** en pantallas pequeñas
-- **Carga rápida** con assets optimizados
-- **🆕 Formularios responsivos** en páginas de contacto
-- **🆕 Cards adaptativas** en listados de noticias
-- **🆕 Sidebar colapsable** en vista de detalle
-
----
-
-## 🔧 Configuración Adicional
-
-### **🆕 Nuevas Configuraciones de URLs**
-```python
-# grupo4/urls.py - URLs principales actualizadas
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', inicio, name="inicio"),
-    path('noticias/', include('apps.noticias.urls')),
-    path('auth/', include(('apps.authentication.urls', 'authentication'), 
-         namespace='authentication')),  # ✨ NUEVA RUTA DE AUTENTICACIÓN
-]
-
-# apps/noticias/urls.py - Rutas de noticias
-urlpatterns = [
-    path('', todas_las_noticias, name="todas_las_noticias"),
-    path('<int:noticia_id>/', una_noticia, name='una_noticia'),  # ✨ NUEVA
-    path('crear/', crear_noticia, name='crear_noticia'),
-    path('actualizar/<int:noticia_id>/', actualizar_noticia, name='actualizar_noticia'),
-    path('eliminar/<int:noticia_id>/', eliminar_noticia, name='eliminar_noticia'),
-    path('acerca-de/', acerca_de, name='acerca_de'),             # ✨ NUEVA
-    path('contacto/', contacto, name='contacto'),                # ✨ NUEVA
-]
-
-# apps/authentication/urls.py - Rutas de autenticación ✨ NUEVAS
-urlpatterns = [
-    path('register/', register_view, name='register'),
-    path('login/', login_view, name='login'),
-    path('logout/', logout_view, name='logout'),
-]
-```
-
-### **🆕 Vistas Mejoradas con Ordenamiento**
-```python
-# views.py - Lógica de ordenamiento implementada
-def todas_las_noticias(request):
-    # Parámetros de filtrado
-    categoria_param = request.GET.get("categoria", "").strip()
-    busqueda = request.GET.get("busqueda", "").strip()
-    ordenamiento = request.GET.get("orden", "").strip()  # ✨ NUEVO
-    
-    # Lógica de ordenamiento avanzado
-    if ordenamiento == "fecha_asc":
-        noticias = noticias.order_by('fecha')
-    elif ordenamiento == "fecha_desc":
-        noticias = noticias.order_by('-fecha')
-    elif ordenamiento == "alfabetico_asc":
-        noticias = noticias.order_by('titulo')
-    elif ordenamiento == "alfabetico_desc":
-        noticias = noticias.order_by('-titulo')
-```
-
-### **Archivos Media**
-```python
-# settings/base.py
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-```
-
-### **Archivos Estáticos**
-```python
-# settings/base.py
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-```
-
-### **Configuración Regional**
-```python
-# settings/base.py
-LANGUAGE_CODE = 'es-ar'
-TIME_ZONE = 'America/Argentina/Buenos_Aires'
-USE_I18N = True
-USE_L10N = True
-USE_TZ = True
-```
-
-### **Configuración de Seguridad**
-```python
-# settings/base.py
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
-```
-
----
-
+### **🌈 Paleta de Colores**
+- **Primario**: #007bff (Azul tecnológico)
+- **Secundario**: #6c757d (Gris moderno)
+- **Éxito**: #28a745 (Verde confirmación)
+- **Advertencia**: #ffc107 (Amarillo alerta)
+- **Peligro**: #dc3545 (Rojo error)
+=======
 ## 📝 **Últimas Actualizaciones**
 
 ### **🔄 Cambios Recientes (Enero 2025)**
@@ -500,55 +382,15 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 
 ---
 
-## � **Estado Actual del Desarrollo**
-
-### **✅ Funcionalidades Completadas (Sprint 1)**
-- ✅ **Configuración inicial** del proyecto Django con estructura modular
-- ✅ **Modelos de datos** completos (Noticia, Autor, Categoria, ImagenNoticia, Comentario)
-- ✅ **Sistema CRUD** para noticias con validaciones
-- ✅ **Búsqueda y filtrado** avanzado con múltiples criterios
-- ✅ **Paginación** inteligente preservando filtros
-- ✅ **Templates responsive** con Bootstrap 5 y diseño profesional
-- ✅ **Panel de administración** personalizado con Django Admin
-
-### **✅ Funcionalidades Completadas (Sprint 2)**
-- ✅ **Sistema de autenticación**: App completa con registro, login y logout funcional
-- ✅ **Configuración de URLs**: Rutas de autenticación integradas correctamente
-- ✅ **Templates básicos**: Vistas de registro y login implementadas
-
-### **🚧 Funcionalidades en Desarrollo (Sprint 2+)**
-- 🚧 **Modelo de perfiles**: Pendiente implementación de tipos de usuario
-- 🚧 **Control de permisos**: Falta integración con diferentes tipos de perfil
-- 🚧 **Navbar dinámico**: Pendiente mostrar estado de autenticación
-- 🚧 **Sistema de comentarios**: Modelo existe, falta integración con permisos
-
-### **📋 Próximos Pasos (Sprint 3)**
-- ⏳ **Modelo Profile**: Implementar Visitante, Miembro, Colaborador
-- ⏳ **Decoradores de permisos**: Restricciones por tipo de usuario
-- ⏳ **Templates de autenticación**: Mejorar diseño y validaciones
-- ⏳ **Formulario de comentarios**: Integrar con sistema de permisos
-- ⏳ **Tests unitarios**: Cobertura de funcionalidades críticas
-
-### **🎯 Entrega Final (Sprint 4)**
-- ⏳ **Deployment**: Configuración para producción
-- ⏳ **Documentación**: Manual de usuario y técnico
-- ⏳ **Testing completo**: Validación integral del sistema
-- ⏳ **Optimizaciones**: Performance y seguridad
-
----
-
-## �👥 Equipo
+## 👥 Equipo
 
 Este proyecto fue posible gracias al trabajo colaborativo de nuestro equipo:
 
 | Nombre y Apellido | Usuario en GitHub | Perfil de GitHub |
 | ----------------- | ----------------- | ---------------- |
-|  | `` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/) |
-|  | `` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/) |
-|  | `` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/) |
-| Vallejos Nahuel | `Nahuel151` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Nahuel151) |
-| Valentino André Cabás | `Valen-cbs` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Valen-cbs) |
 | Aldo Andrés Acosta | `Andres777777` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Andres777777) |
+| Valentino André Cabás | `Valen-cbs` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Valen-cbs) |
+| Vallejos Nahuel | `Nahuel151` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Nahuel151) |
 | Juan Diego González Antoniazzi | `JDGA1997` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JDGA1997) |
 
 ---
@@ -558,15 +400,13 @@ Este proyecto fue posible gracias al trabajo colaborativo de nuestro equipo:
 ### 🤖 **Portal de Noticias sobre Robótica**
 
 *Desarrollado con ❤️ por el Grupo N°4 - Informatorio 2025*
-*Fecha de última actualización: Agosto 11, 2025*
+*Fecha de última actualización: Agosto 16, 2025*
 
 [![Made with Django](https://img.shields.io/badge/Made%20with-Django-092E20?style=flat-square&logo=django)](https://www.djangoproject.com/)
 [![Powered by Bootstrap](https://img.shields.io/badge/Powered%20by-Bootstrap-7952B3?style=flat-square&logo=bootstrap)](https://getbootstrap.com/)
 [![Built with Python](https://img.shields.io/badge/Built%20with-Python-3776AB?style=flat-square&logo=python)](https://www.python.org/)
 
 ---
-
-
 
 **© 2025 - Informatorio Chaco | Proyecto Final de Desarrollo Web con Django**
 
