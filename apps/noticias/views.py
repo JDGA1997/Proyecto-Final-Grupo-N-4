@@ -208,45 +208,19 @@ def acerca_de(request):
     context = {
         'equipo': [
             {
-                'nombre': 'Aldo Andrés Acosta', 
-                'rol': '',
-                'descripcion': '',
-                'github': 'Andres777777'
+                'nombre': 'María Alejandra Roldán', 
+                'github': 'Ale695'
             },
             {
                 'nombre': 'Valentino André Cabás',
-                'rol': '',
-                'descripcion': '',
                 'github': 'Valen-cbs'
             },
                         {
                 'nombre': 'Nahuel Vallejos',
-                'rol': '',
-                'descripcion': '',
                 'github': 'Nahuel151'
             },
             {
-                'nombre': 'Integrante4',
-                'rol': '',
-                'descripcion': '',
-                'github': ''
-            },
-            {
-                'nombre': 'Integrante5',
-                'rol': '',
-                'descripcion': '',
-                'github': ''
-            },
-            {
-                'nombre': 'Integrante6',
-                'rol': '',
-                'descripcion': '',
-                'github': ''
-            },
-            {
                 'nombre': 'Juan Diego González Antoniazzi',
-                'rol': 'Desarrollador Full Stack',
-                'descripcion': 'Scrum Master y Tester QA',
                 'github': 'JDGA1997'
             }
         ]

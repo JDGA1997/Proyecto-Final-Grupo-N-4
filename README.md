@@ -359,26 +359,6 @@ Inicio (/)
 - **Éxito**: #28a745 (Verde confirmación)
 - **Advertencia**: #ffc107 (Amarillo alerta)
 - **Peligro**: #dc3545 (Rojo error)
-=======
-## 📝 **Últimas Actualizaciones**
-
-### **🔄 Cambios Recientes (Enero 2025)**
-- ✅ **Sistema de autenticación completado**: App `authentication` funcional
-  - ✅ Registro de usuarios con validaciones
-  - ✅ Login/logout con redirecciones correctas
-  - ✅ URLs integradas en `/auth/`
-  - ✅ Templates responsivos implementados
-- ✅ **Correcciones críticas**: Errores de sintaxis y configuración resueltos
-  - ✅ Fix indentación en `views.py` de authentication
-  - ✅ Fix imports en `urls.py` de authentication
-  - ✅ Configuración de admin corregida
-- ✅ **Servidor completamente funcional**: Todas las rutas operativas
-- ✅ **Documentación actualizada**: README reflejando estado actual
-
-### **🎯 Próximos Objetivos**
-- 🔄 **Modelo Profile**: Implementar tipos de usuario (Visitante, Miembro, Colaborador)
-- 🔄 **Integración de permisos**: Restricciones por tipo de perfil
-- 🔄 **Navbar dinámico**: Mostrar estado de autenticación del usuario
 
 ---
 
@@ -388,7 +368,7 @@ Este proyecto fue posible gracias al trabajo colaborativo de nuestro equipo:
 
 | Nombre y Apellido | Usuario en GitHub | Perfil de GitHub |
 | ----------------- | ----------------- | ---------------- |
-| Aldo Andrés Acosta | `Andres777777` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Andres777777) |
+| María Alejandra Roldán | `Ale695` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Ale695) |
 | Valentino André Cabás | `Valen-cbs` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Valen-cbs) |
 | Vallejos Nahuel | `Nahuel151` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Nahuel151) |
 | Juan Diego González Antoniazzi | `JDGA1997` | [![GitHub Badge](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JDGA1997) |
